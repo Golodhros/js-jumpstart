@@ -1,0 +1,18 @@
+/**
+ * jQuery Css Selectors Performance	
+ * The most common ways to select elements using jQuery can be basically broken down into five different methods. In order, roughly, from fastest to slowest, these are:
+ * 
+ * Ref: http://24ways.org/2011/your-jquery-now-with-less-suck
+ */
+
+$("#id");
+/* This is without a doubt the fastest selector jQuery provides because it maps directly to the native document.getElementbyId() JavaScript method. 
+ * If possible, the selectors listed below should be prefaced with an ID selector in conjunction with jQuery’s .find() method to limit the scope of the page that has to be searched. */
+$("p"); $("input"); $("form");... 
+/* Selecting elements by tag name is also fast, since it maps directly to the native document.getElementsByTagname() method. */
+$(".class");
+/* Selecting by class name is a little trickier. It can cause some pretty significant slowdowns in IE8 and below, as they do not support the native document.getElementsByClassName() JavaScript method.*/ 
+$("[attribute=value]");
+/* There is no native JavaScript method for this selector to use, so jQuery crawls the entire DOM looking for matches. Modern browsers that support the querySelectorAll() method will perform better in certain cases. */
+$(":hidden");
+/* There is no native JavaScript method for this one to use. Pseudo-selectors can be painfully slow since the selector has to be run against every element in your search space. Try to avoid these if at all possible or limit the search space to a specific portion of the page */

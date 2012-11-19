@@ -1,0 +1,66 @@
+<!DOCTYPE html><html><head>
+    <title>Canvas drawImage example 2</title>
+    <meta name="DC.creator" content="Kamiel Martinet, http://www.martinet.nl/">
+    <meta name="DC.publisher" content="Mozilla Developer Center, http://developer.mozilla.org">
+
+<!--[if IE]><script type="text/javascript" src="../../../../../../bin/flashcanvas.js"></script><![endif]-->
+
+    <script>
+    function canvasReady() {
+      draw(document.getElementById('canvas').getContext('2d'));
+    }
+    function draw(ctx) {
+      var img = new Image();
+      img.onload = function(){
+        var i, j;
+        for (i=0;i<4;i++){
+          for (j=0;j<3;j++){
+            ctx.drawImage(img,j*50,i*38,50,38);
+          }
+        }
+
+        // prevent IE6 memory leak
+        img = null;
+      }
+      img.src = '../img/rhino.jpg';
+    }
+    </script>
+    <style type="text/css">
+      body { margin: 20px; font-family: arial,verdana,helvetica; background: #fff;}
+      h1 { font-size: 140%; font-weight:normal; color: #036; border-bottom: 1px solid #ccc; }
+      h2 { font-size: 100%; color: #036; }
+      canvas { border: 2px solid #000; float: left; margin-right: 20px; margin-bottom: 20px; }
+      pre { float:left; display:block; background: rgb(238,238,238); border: 1px dashed #666; padding: 15px 20px; margin: 0 0 10px 0; }
+    </style>
+  </head>
+  <body onload="canvasReady();">
+    <h1>Canvas <code>drawImage</code> example 2</h1>
+    <div>
+      <canvas id="canvas" width="150" height="150"></canvas>
+      <pre>
+function canvasReady() {
+  draw(document.getElementById('canvas').getContext('2d'));
+}
+function draw(ctx) {
+  var img = new Image();
+  img.onload = function(){
+    var i, j;
+    for (i=0;i<4;i++){
+      for (j=0;j<3;j++){
+        ctx.drawImage(img,j*50,i*38,50,38);
+      }
+    }
+
+    // prevent IE6 memory leak
+    img = null;
+  }
+  img.src = '../img/rhino.jpg';
+}
+      </pre>
+      <div style="float:left;">
+        <h2>Source image</h2>
+        <img src="../img/rhino.jpg"/>
+      </div>
+    </div>
+  </body>
+</html>

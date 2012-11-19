@@ -1,0 +1,101 @@
+<!DOCTYPE html><html><head>
+    <title>A canvas resize example</title>
+
+<!--[if IE]><script type="text/javascript" src="../../../../../../bin/flashcanvas.js"></script><![endif]-->
+
+    <script>
+      function canvasReady() {
+        drawShape(document.getElementById('canvas'));
+      }
+      function drawShape(canvas){
+        var ctx = canvas.getContext('2d');
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        // Draw shapes
+        ctx.rotate(Math.PI / 36);
+        ctx.save();
+        ctx.fillRect(25,25,100,100);
+        ctx.clearRect(45,45,60,60);
+        ctx.strokeRect(50,50,50,50);
+
+        ctx.font = "64pt Arial";
+        ctx.textBaseline = "top";
+
+        ctx.fillStyle = "orange";
+        ctx.fillText("fill", 22, 22);
+        ctx.restore();
+      }
+      function wide() {
+        var e = document.getElementById('canvas');
+        e.width = parseInt(e.width) + 10;
+        e.height = parseInt(e.height) + 10;
+        e.getContext('2d').clearRect(0, 0, e.width, e.height);
+      }
+      function reduce() {
+        var e = document.getElementById('canvas');
+        e.width = parseInt(e.width) - 10;
+        e.height = parseInt(e.height) - 10;
+        e.getContext('2d').clearRect(0, 0, e.width, e.height);
+      }
+      function redraw() {
+        drawShape(document.getElementById('canvas'));
+      }
+    </script>
+    <style type="text/css">
+      body { margin: 20px; font-family: arial,verdana,helvetica; background: #fff;}
+      h1 { font-size: 140%; font-weight:normal; color: #036; border-bottom: 1px solid #ccc; }
+      canvas { border: 2px solid #000; float: left; margin-right: 20px; margin-bottom: 20px; }
+      pre { float:left; display:block; background: rgb(238,238,238); border: 1px dashed #666; padding: 15px 20px; margin: 0 0 10px 0; }
+    </style>
+  </head>
+
+  <body onload="canvasReady();">
+    <h1>A canvas <code>resize</code> example</h1>
+    <div>
+      <input type="button" value="[+] wide" onclick="wide()" />
+      <input type="button" value="[-] reduce" onclick="reduce()" />
+      <input type="button" value="[R] redraw" onclick="redraw()" />
+      <br />
+      <canvas id="canvas" width="150" height="150"></canvas>
+      <br />
+<pre>
+function canvasReady() {
+  drawShape(document.getElementById('canvas'));
+}
+function drawShape(canvas){
+  var ctx = canvas.getContext('2d');
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  // Draw shapes
+  ctx.rotate(Math.PI / 36);
+  ctx.save();
+  ctx.fillRect(25,25,100,100);
+  ctx.clearRect(45,45,60,60);
+  ctx.strokeRect(50,50,50,50);
+
+  ctx.font = "64pt Arial";
+  ctx.textBaseline = "top";
+
+  ctx.fillStyle = "orange";
+  ctx.fillText("fill", 22, 22);
+  ctx.restore();
+}
+function wide() {
+  var e = document.getElementById('canvas');
+  e.width = parseInt(e.width) + 10;
+  e.height = parseInt(e.height) + 10;
+  e.getContext('2d').clearRect(0, 0, e.width, e.height);
+}
+function reduce() {
+  var e = document.getElementById('canvas');
+  e.width = parseInt(e.width) - 10;
+  e.height = parseInt(e.height) - 10;
+  e.getContext('2d').clearRect(0, 0, e.width, e.height);
+}
+function redraw() {
+  drawShape(document.getElementById('canvas'));
+}
+</pre>
+    </div>
+  </body>
+</html>

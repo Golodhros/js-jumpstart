@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="en"> 
+	<head>
+  		<meta charset="utf-8">
+  		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+  		<title>Canvas Picture</title>
+  		<meta name="description" content="">
+  		<meta name="author" content="">
+	</head>
+	<body>
+		<div id="support"></div>
+		
+		<canvas id="trails" style="border: 1px solid;" width="380" height="400">
+		</canvas>
+
+		<script>
+			function createCanopyPath(context) {
+				// Draw the tree canopy
+				context.beginPath();
+				context.moveTo(-25, -50);
+				context.lineTo(-10, -80);
+				context.lineTo(-20, -80);
+				context.lineTo(-5, -110);
+				context.lineTo(-15, -110);
+				// Top of the tree
+				context.lineTo(0, -140);
+				context.lineTo(15, -110);
+				context.lineTo(5, -110);
+				context.lineTo(20, -80);
+				context.lineTo(10, -80);
+				context.lineTo(25, -50);
+				
+				// Increase the line width
+				context.lineWidth = 4;
+				// Round the corners at path joints (round, miter, bevel)
+				context.lineJoin = 'round';
+				// Change the color to brown
+				context.strokeStyle = '#663300';
+				// Finally, stroke the canopy
+				context.stroke();
+				
+				// Set the fill color to green and fill the canopy
+				context.fillStyle = '#339900';
+				context.fill();
+				
+				// Close the path back to its start point
+				context.closePath();
+			}
+			
+			function createTrunk(context) {
+				// Change fill color to brown
+				context.fillStyle = '#663300';
+				// Fill a rectangle for the tree trunk
+				context.fillRect(-5, -50, 10, 50);
+			}
+			
+			function createCurvePath(context) {
+				// Save the canvas state and draw the path
+				context.save();
+				context.translate(-150, 150);
+				context.beginPath();
+				// The first curve bends up and right
+				context.moveTo(0, 0);
+				context.quadraticCurveTo(170, -50, 260, -190);
+				// The second curve continues down and right
+				context.quadraticCurveTo(310, -250, 410,-250);
+				// Draw the path in a wide brown stroke
+				context.strokeStyle = '#663300';
+				context.lineWidth = 20;
+				context.stroke();
+				// Restore the previous canvas state
+				context.restore();
+			}
+			
+			function createTrunkGradient(context) {
+				// Create a 3 stop gradient horizontally across the trunk
+				var trunkGradient = context.createLinearGradient(-5, -50, 5, -50);
+				// For a radiant gradient use: createRadialGradient(x0, y0, r0, x1, y1, r1)
+				// The beginning of the trunk is medium brown
+				trunkGradient.addColorStop(0, '#663300');
+				// The middle-left of the trunk is lighter in color
+				trunkGradient.addColorStop(0.4, '#996600');
+				// The right edge of the trunk is darkest
+				trunkGradient.addColorStop(1, '#552200');
+				// Apply the gradient as the fill style, and draw the trunk
+				context.fillStyle = trunkGradient;
+				context.fillRect(-5, -50, 10, 50);
+				// A second, vertical gradient creates a shadow from the
+				// canopy on the trunk
+				var canopyShadow = context.createLinearGradient(0, -50, 0, 0);
+				// The beginning of the shadow gradient is black, but with
+				// a 50% alpha value
+				canopyShadow.addColorStop(0, 'rgba(0, 0, 0, 0.5)');
+				// Slightly further down, the gradient completely fades to
+				// fully transparent. The rest of the trunk gets no shadow.
+				canopyShadow.addColorStop(0.2, 'rgba(0, 0, 0, 0.0)');
+				// Draw the shadow gradient on top of the trunk gradient
+				context.fillStyle = canopyShadow;
+				context.fillRect(-5, -50, 10, 50);
+			}
+			
+			// Move tree drawing into its own function for reuse
+			function drawTree(context) {
+				var trunkGradient = context.createLinearGradient(-5, -50, 5, -50);
+				trunkGradient.addColorStop(0, '#663300');
+				trunkGradient.addColorStop(0.4, '#996600');
+				trunkGradient.addColorStop(1, '#552200');
+				context.fillStyle = trunkGradient;
+				context.fillRect(-5, -50, 10, 50);
+				
+				var canopyShadow = context.createLinearGradient(0, -50, 0, 0);
+				canopyShadow.addColorStop(0, 'rgba(0, 0, 0, 0.5)');
+				canopyShadow.addColorStop(0.2, 'rgba(0, 0, 0, 0.0)');
+				context.fillStyle = canopyShadow;
+				context.fillRect(-5, -50, 10, 50);
+				createCanopyPath(context);
+				context.lineWidth = 4;
+				context.lineJoin = 'round';
+				context.strokeStyle = '#663300';
+				context.stroke();
+				context.fillStyle = '#339900';
+				context.fill();
+			}
+			
+			function drawShadows(context){
+				// Create a 3 stop gradient horizontally across the trunk
+				// Save the current canvas state for later
+				context.save();
+				// Create a slanted tree as the shadow by applying
+				// a shear transform, changing X values to increase
+				// as Y values increase
+				context.transform(1, 0,-0.5, 1, 0, 0);
+				// Shrink the shadow down to 60% height in the Y dimension
+				context.scale(1, 0.6);
+				// Set the tree fill to be black, but at only 20% alpha
+				context.fillStyle = 'rgba(0, 0, 0, 0.2)';
+				context.fillRect(-5, -50, 10, 50);
+				// Redraw the tree with the shadow effects applied
+				createCanopyPath(context);
+				context.fill();
+				// Restore the canvas state
+				context.restore();
+			}
+			
+			function drawText(context){
+				// Draw title text on our canvas
+				context.save();
+				// The font will be 60 pixel, Impact face
+				context.font = "16px georgia";
+				// Use a brown fill for our text
+				context.fillStyle = '#996600';
+				// Text can be aligned when displayed
+				context.textAlign = 'center';
+				// Draw the text in the middle of the canvas with a max
+				// width set to center properly
+				context.fillText('Happy Trails!', 200, 60, 400);
+				// Set some shadow on our text, black with 20% alpha
+				context.shadowColor = 'rgba(0, 0, 0, 0.2)';
+				// Move the shadow to the right 15 pixels, up 10
+				context.shadowOffsetX = 15;
+				context.shadowOffsetY = -10;
+				// Blur the shadow slightly
+				context.shadowBlur = 2;
+
+				context.restore();
+			}
+
+			function drawTrails2() {
+				var canvas = document.getElementById('trails'),
+				context = canvas.getContext('2d');
+
+				// Draw the first tree at X=130, Y=250
+				context.save();
+				context.translate(130, 150);
+				drawTree(context);
+				context.restore();
+				// Draw the second tree at X=260, Y=500
+				context.save();
+				context.translate(260, 400);
+				// Scale this tree twice normal in both dimensions
+				context.scale(2, 2);
+				drawText(context);
+				drawTree(context);
+				context.restore();
+			}
+			
+			function drawTrails() {
+				var canvas = document.getElementById('trails'),
+				context = canvas.getContext('2d');
+				context.save();
+				context.translate(130, 150);
+				// Create the shape for our canopy path
+				createCanopyPath(context);
+				createCurvePath(context);
+				createTrunk(context);
+				createTrunkGradient(context);
+				// Stroke the current path
+				context.stroke();
+				context.restore();
+			}
+			
+
+			//window.addEventListener("load", drawTrails, true);
+			window.addEventListener("load", drawTrails2, true);
+	  	</script>
+	</body>
+</html>

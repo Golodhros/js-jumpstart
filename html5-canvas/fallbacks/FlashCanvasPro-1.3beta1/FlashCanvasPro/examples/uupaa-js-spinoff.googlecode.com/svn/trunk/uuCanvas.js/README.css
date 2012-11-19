@@ -1,0 +1,40 @@
+@charset "UTF-8";
+
+html {
+  color: whitesmoke; background-color: #222;
+  font-family:'メイリオ',Meiryo,'ヒラギノ角ゴ Pro W3','Hiragino Kaku Gothic Pro','ＭＳ Ｐゴシック',sans-serif;
+  margin: 0.5em 2em; line-height: 1.5;
+}
+a { color: lightblue }
+a[href] { color: lightblue }
+b { color: gold }
+p:lang(en) { color: whitesmoke; }
+span:lang(en) { color: whitesmoke; }
+p:lang(ja) { color: #cc4; }
+span:lang(ja) { color: #cc4; }
+pre {
+  padding: 0.5em 1em;
+  margin-bottom: 2em;
+  overflow: auto;
+  font-family: 'ＭＳ ゴシック',monospace;
+  border: 1px solid #2c2c2c;
+  border-left-width: 8px;
+  color: ghostwhite; background-color: #3e3e3e;
+}
+pre.eg {
+  border-color: #022B4F;
+  color: ghostwhite; background-color: #18384F;
+}
+pre u { color: limegreen; text-decoration: none; } /* comment */
+dt { margin-top: 1em; font-weight: bold; color: lightblue }
+li { margin-bottom: 0.5em; }
+.undocumented { background-color: gray; color: black; }
+i {}
+del { color: gray; font-size: small; text-decoration: line-through; }
+table, tr, th, td { border: 1px solid gray; }
+caption { padding-top: 1em; }
+.run, a.run {
+  border: 4px outset silver;
+  color: black;
+  background-color: silver;
+}

@@ -1,0 +1,127 @@
+<!DOCTYPE html><html><head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>A canvas fontFamily example</title>
+
+<!--[if IE]><script type="text/javascript" src="../../../../../../bin/flashcanvas.js"></script><![endif]-->
+
+    <script>
+    function canvasReady() {
+      draw(document.getElementById('canvas1').getContext('2d'), "blue");
+    }
+    function draw(ctx, color) {
+      var w = 450, h = 600;
+
+      grid(ctx, w, h, 10, 5, "SkyBlue", "steelblue");
+
+      ctx.textBaseline = "top";
+      ctx.fillStyle = color;
+
+      var y = 10;
+      var ary = [
+        "24pt Arial"                 , "24pt Arial"                 ,
+        "24pt 'Arial Black'"         , "24pt 'Arial Black'"         ,
+        "24pt 'Comic Sans MS'"       , "24pt 'Comic Sans MS'"       ,
+        "24pt 'Courier New'"         , "24pt 'Courier New'"         ,
+        "24pt 'Lucida Grande'"       , "24pt 'Lucida Grande'"       ,
+        "24pt 'Lucida Sans Unicode'" , "24pt 'Lucida Sans Unicode'" ,
+        "24pt 'Times New Roman'"     , "24pt 'Times New Roman'"     ,
+        "24pt 'Trebuchet MS'"        , "24pt 'Trebuchet MS'"        ,
+        "24pt Verdana"               , "24pt Verdana"               ,
+        "24pt helvetica"             , "24pt helvetica"             ,
+        "24pt hoge,impact"           , "24pt hoge,impact"
+      ];
+      var i = 0, iz = ary.length;
+      for (; i < iz; i += 2) {
+        ctx.font = ary[i];
+        ctx.fillText(ary[i + 1], 10, y);
+        y += 50;
+      }
+    }
+    function grid(ctx, w, h, size, unit, color, color2) {
+      var x, y, i, j;
+      for (i = 0, x = size; x < w; ++i, x += size) {
+        ctx.beginPath();
+        ctx.strokeStyle = (i % unit) ? color : color2;
+        ctx.moveTo(x, 0);
+        ctx.lineTo(x, h);
+        ctx.stroke();
+        ctx.closePath();
+      }
+      for (j = 0, y = size; y < h; ++j, y += size) {
+        ctx.beginPath();
+        ctx.strokeStyle = (j % unit) ? color : color2;
+        ctx.moveTo(0, y);
+        ctx.lineTo(w, y);
+        ctx.stroke();
+        ctx.closePath();
+      }
+    }
+    </script>
+    <style type="text/css">
+      body { margin: 20px; font-family: arial,verdana,helvetica; background: #fff;}
+      h1 { font-size: 140%; font-weight:normal; color: #036; border-bottom: 1px solid #ccc; }
+      canvas { border: 2px solid #000; float: left; margin-right: 20px; margin-bottom: 20px; }
+      pre { float:left; display:block; background: rgb(238,238,238); border: 1px dashed #666; padding: 15px 20px; margin: 0 0 10px 0; }
+    </style>
+  </head>
+  <body onload="canvasReady();">
+    <h1>A canvas <code>fontFamily</code> example</h1>
+    <div>
+      <canvas id="canvas1" width="450" height="600"></canvas>
+      <pre>
+function canvasReady() {
+  draw(document.getElementById('canvas1').getContext('2d'), "blue");
+}
+function draw(ctx, color) {
+  var w = 450, h = 600;
+
+  grid(ctx, w, h, 10, 5, "SkyBlue", "steelblue");
+
+  ctx.textBaseline = "top";
+  ctx.fillStyle = color;
+
+  var y = 10;
+  var ary = [
+    "24pt Arial"                 , "24pt Arial"                 ,
+    "24pt 'Arial Black'"         , "24pt 'Arial Black'"         ,
+    "24pt 'Comic Sans MS'"       , "24pt 'Comic Sans MS'"       ,
+    "24pt 'Courier New'"         , "24pt 'Courier New'"         ,
+    "24pt 'Lucida Grande'"       , "24pt 'Lucida Grande'"       ,
+    "24pt 'Lucida Sans Unicode'" , "24pt 'Lucida Sans Unicode'" ,
+    "24pt 'Times New Roman'"     , "24pt 'Times New Roman'"     ,
+    "24pt 'Trebuchet MS'"        , "24pt 'Trebuchet MS'"        ,
+    "24pt Verdana"               , "24pt Verdana"               ,
+    "24pt helvetica"             , "24pt helvetica"             ,
+    "24pt hoge,impact"           , "24pt hoge,impact"
+  ];
+  var i = 0, iz = ary.length;
+  for (; i &lt; iz; i += 2) {
+    ctx.font = ary[i];
+    ctx.fillText(ary[i + 1], 10, y);
+    y += 50;
+  }
+}
+function grid(ctx, w, h, size, unit, color, color2) {
+  var x, y, i, j;
+  for (i = 0, x = size; x &lt; w; ++i, x += size) {
+    ctx.beginPath();
+    ctx.strokeStyle = (i % unit) ? color : color2;
+    ctx.moveTo(x, 0);
+    ctx.lineTo(x, h);
+    ctx.stroke();
+    ctx.closePath();
+  }
+  for (j = 0, y = size; y &lt; h; ++j, y += size) {
+    ctx.beginPath();
+    ctx.strokeStyle = (j % unit) ? color : color2;
+    ctx.moveTo(0, y);
+    ctx.lineTo(w, y);
+    ctx.stroke();
+    ctx.closePath();
+  }
+}
+      </pre>
+    </div>
+  </body>
+</html>
+

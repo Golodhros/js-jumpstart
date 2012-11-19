@@ -1,0 +1,217 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>uuCanvas.js - DEMO</title>
+<style type="text/css">@import url(./README.css);</style>
+<style type="text/css">
+td a { padding-left: 10px; }
+</style>
+</head>
+<body>
+
+<table>
+<caption>Basic functions</caption>
+<tr><td>1.2 Resize canvas</td>
+    <td><a href="demo/1_2_canvas_resize.html">Base</a>
+        <a href="demo/1_2_canvas_resize+matrix.html">Matrix</a></td></tr>
+
+<tr><td>2.1 fillRect(), strokeRect(), clearRect()</td>
+    <td><a href="demo/2_1_canvas_rect.html">Base</a>
+        <a href="demo/2_1_canvas_rect+matrix.html">Matrix</a></td></tr>
+
+<tr><td>2.2 moveTo()</td>
+    <td><a href="demo/2_2_canvas_moveto.html">Base</a>
+        <a href="demo/2_2_canvas_moveto+matrix.html">Matrix</a></td></tr>
+
+<tr><td>2.3 lineTo()</td>
+    <td><a href="demo/2_3_canvas_lineto.html">Base</a>
+        <a href="demo/2_3_canvas_lineto+matrix.html">Matrix</a></td></tr>
+
+<tr><td>2.4 arc()</td>
+    <td><a href="demo/2_4_canvas_arc.html">Base</a>
+        <a href="demo/2_4_canvas_arc+matrix.html">Matrix</a></td></tr>
+
+<tr><td>2.5 quadraticCurveTo()</td>
+    <td><a href="demo/2_5_canvas_quadraticcurveto.html">Base</a>
+        <a href="demo/2_5_canvas_quadraticcurveto+matrix.html">Matrix</a></td></tr>
+
+<tr><td>2.6 bezierCurveTo()</td>
+    <td><a href="demo/2_6_canvas_beziercurveto.html">Base</a>
+        <a href="demo/2_6_canvas_beziercurveto+matrix.html">Matrix</a></td></tr>
+
+<tr><td>2.7 Combined</td>
+    <td><a href="demo/2_7_canvas_combined.html">Base</a>
+        <a href="demo/2_7_canvas_combined+matrix.html">Matrix</a></td></tr>
+
+<tr><td>2.8 clearRect()</td>
+    <td><a href="demo/2_8_canvas_clearRect.html">Base</a>
+        <a href="demo/2_8_canvas_clearRect+matrix.html">Matrix</a></td></tr>
+
+<tr><td>3.1 drawImage(HTMLImageElement)</td>
+    <td><a href="demo/3_1_canvas_drawimage.html">Base</a>
+        <a href="demo/3_1_canvas_drawimage+matrix.html">Matrix</a></td></tr>
+
+<tr><td>3.2 drawImage(HTMLImageElement) + tile</td>
+    <td><a href="demo/3_2_canvas_drawimage.html">Base</a>
+        <a href="demo/3_2_canvas_drawimage+matrix.html">Matrix</a>
+        <a href="demo/3_2_canvas_drawimage+alpha.html">Alpha</a></td></tr>
+
+<tr><td>3.3 drawImage(HTMLImageElement) + 9 args</td>
+    <td><a href="demo/3_3_canvas_drawimage.html">Base</a>
+        <a href="demo/3_3_canvas_drawimage+matrix.html">Matrix</a>
+        <a href="demo/3_3_canvas_drawimage+trans+clip.html">Clip</a></td></tr>
+
+<tr><td>3.4 Gallery</td>
+    <td><a href="demo/3_4_canvas_gallery.html">Base</a>
+        <a href="demo/3_4_canvas_gallery+matrix.html">Matrix</a></td></tr>
+
+<tr><td>3.5 drawImage(HTMLCanvasElement)</td>
+    <td><a href="demo/3_5_canvas_drawimage_canvas.html">Base</a>
+        <a href="demo/3_5_canvas_drawimage_canvas+matrix.html">Matrix</a></td></tr>
+
+<tr><td>4.1 fillStyle</td>
+    <td><a href="demo/4_1_canvas_fillstyle.html">Base</a>
+        <a href="demo/4_1_canvas_fillstyle+matrix.html">Matrix</a></td></tr>
+
+<tr><td>4.2 strokeStyle</td>
+    <td><a href="demo/4_2_canvas_strokestyle.html">Base</a>
+        <a href="demo/4_2_canvas_strokestyle+matrix.html">Matrix</a></td></tr>
+
+<tr><td>4.3 globalAlpha</td>
+    <td><a href="demo/4_3_canvas_globalalpha.html">Base</a>
+        <a href="demo/4_3_canvas_globalalpha+matrix.html">Matrix</a></td></tr>
+
+<tr><td>4.4 rgba(255,255,255,1.0) color</td>
+    <td><a href="demo/4_4_canvas_rgba.html">Base</a>
+        <a href="demo/4_4_canvas_rgba+matrix.html">Matrix</a></td></tr>
+
+<tr><td>4.4.1 rgba(100%,100%,100%,1.0) color</td>
+    <td><a href="demo/4_4_1_canvas_rgba.html">Base</a></td></tr>
+
+<tr><td>4.5 lineWidth</td>
+    <td><a href="demo/4_5_canvas_linewidth.html">Base</a>
+        <a href="demo/4_5_canvas_linewidth+matrix.html">Matrix</a></td></tr>
+
+<tr><td>4.6 lineCap</td>
+    <td><a href="demo/4_6_canvas_linecap.html">Base</a></td></tr>
+
+<tr><td>4.7 lineJoin</td>
+    <td><a href="demo/4_7_canvas_linejoin.html">Base</a></td></tr>
+
+<tr><td>4.8 miterLimit</td>
+    <td><a href="demo/4_8_canvas_miterlimit.html">Base</a></td></tr>
+
+<tr><td>4.9 createLinearGradient()</td>
+    <td><a href="demo/4_9_canvas_lineargradient.html">Base</a>
+        <a href="demo/4_9_canvas_lineargradient+matrix.html">Matrix</a></td></tr>
+
+<tr><td>4.10 createRadialGradient()</td>
+    <td><a href="demo/4_10_canvas_radialgradient.html">Base</a>
+        <a href="demo/4_10_canvas_radialgradient+matrix.html">Matrix</a>
+        <a href="demo/4_10_canvas_radialgradient+stroke.html">Stroke</a></td></tr>
+
+<tr><td>4.11 createPattern()</td>
+    <td><a href="demo/4_11_canvas_createpattern.html">Base</a>
+        <a href="demo/4_11_canvas_createpattern+matrix.html">Matrix</a>
+        <a href="demo/4_11_canvas_createpattern+stroke.html">Stroke</a></td></tr>
+
+<tr><td>4.12 Gradient + Pattern</td>
+    <td><a href="demo/4_12_canvas_gradients.html">Base</a>
+        <a href="demo/4_12_canvas_gradients+matrix.html">Matrix</a></td></tr>
+
+<tr><td>5.1 save() + restore()</td>
+    <td><a href="demo/5_1_canvas_savestate.html">Base</a></td></tr>
+
+<tr><td>5.1.1 save() + restore() + font + shadow</td>
+    <td><a href="demo/5_1_canvas_savestate+shadow.html">Base</a></td></tr>
+
+<tr><td>5.2 translate()</td>
+    <td><a href="demo/5_2_canvas_translate.html">Base</a></td></tr>
+
+<tr><td>5.3 rotate()</td>
+    <td><a href="demo/5_3_canvas_rotate.html">Base</a></td></tr>
+
+<tr><td>5.4 scale()</td>
+    <td><a href="demo/5_4_canvas_scale.html">Base</a></td></tr>
+
+<tr><td>5.5 transform()</td>
+    <td><a href="demo/5_5_canvas_transform.html">Base</a></td></tr>
+
+<tr><td>6.1 globalCompositeOperation</td>
+    <td><a href="demo/6_1_canvas_composite.html">Base</a>
+        <a href="demo/6_1_canvas_composite_stroke.html">Stroke</a>
+        <a href="demo/6_1_canvas_composite_gradients.html">Gradient</a></td></tr>
+
+<tr><td>6.2 clip()</td>
+    <td><a href="demo/6_2_canvas_clipping.html">Base</a></td></tr>
+
+<tr><td>7.2 animation</td>
+    <td><a href="demo/7_2_canvas_animation.html">Base</a></td></tr>
+
+<tr><td>8.1 fillText() + strokeText()</td>
+    <td><a href="demo/8_1_canvas_fillText_strokeText.html">Base</a>
+        <a href="demo/8_1_canvas_fillText_strokeText+matrix.html">Matrix</a></td></tr>
+
+<tr><td>8.2 measureText()</td>
+    <td><a href="demo/8_2_canvas_measureText.html">Base</a>
+        <a href="demo/8_2_canvas_measureText+matrix.html">Matrix</a></td></tr>
+
+<tr><td>8.3 textAlign</td>
+    <td><a href="demo/8_3_canvas_textAlign.html">Base</a>
+        <a href="demo/8_3_canvas_textAlign+matrix.html">Matrix</a>
+        <a href="demo/8_3_canvas_textAlign+rtl.html">rtl</a></td></tr>
+
+<tr><td>8.4 textBaseline</td>
+    <td><a href="demo/8_4_canvas_textBaseline.html">Base</a></td></tr>
+
+<tr><td>8.5 fillText() + font</td>
+    <td><a href="demo/8_5_canvas_fontSize_fillText.html">Base</a></td></tr>
+
+<tr><td>8.6 strokeText() + font</td>
+    <td><a href="demo/8_6_canvas_fontSize_strokeText.html">Base</a></td></tr>
+
+<tr><td>8.7 font, fontFamily</td>
+    <td><a href="demo/8_7_canvas_fontFamily.html">Base</a>
+        <a href="demo/8_7_canvas_fontFamily+align.html">Align</a></td></tr>
+
+<tr><td>9.1 fillText() + shadow</td>
+    <td><a href="demo/9_1_canvas_text_shadow.html">Base</a>
+        <a href="demo/9_1_canvas_text_shadow+matrix.html">Matrix</a>
+        <a href="demo/9_1_canvas_text_shadow_alpha.html">Alpha</a>
+        <a href="demo/9_1_canvas_text_shadow_alpha+matrix.html">Alpha+Matrix</a></td></tr>
+
+<tr><td>9.1.1 shadowOffsetX, shadowOffsetY, shadowBlur</td>
+    <td><a href="demo/9_1_canvas_text_shadow_direction.html">Base</a></td></tr>
+
+<tr><td>9.1.2 createPattern() + shadow</td>
+    <td><a href="demo/9_1_canvas_text_shadow_pattern.html">Base</a></td></tr>
+
+<tr><td>9.1.3 Gradient + shadow</td>
+    <td><a href="demo/9_1_canvas_text_shadow_linearGradient.html">Linear</a>
+        <a href="demo/9_1_canvas_text_shadow_radialGradient.html">Radial</a></td></tr>
+
+<tr><td>9.2 fill() + shadow</td>
+    <td><a href="demo/9_2_canvas_path_shadow.html">Base</a>
+        <a href="demo/9_2_canvas_path_shadow_alpha.html">Alpha</a></td></tr>
+
+<tr><td>9.3 stroke() + shadow</td>
+    <td><a href="demo/9_3_canvas_stroke_shadow.html">Base</a>
+        <a href="demo/9_3_canvas_stroke_shadow+matrix.html">Matrix</a></td></tr>
+
+<tr><td>9.4 drawImage() + shadow</td>
+    <td><a href="demo/9_4_canvas_image_shadow.html">Base</a>
+        <a href="demo/9_4_canvas_image_shadow+matrix.html">Matrix</a>
+        <a href="demo/9_4_canvas_image_shadow+pattern.html">Pattern</a>
+        <a href="demo/9_4_canvas_image_shadow+pattern+matrix.html">Pattern+Matrix</a></td></tr>
+
+<tr><td>10.1 shadow param</td>
+    <td><a href="demo/10_1_canvas_shadow_param.html">Base</a></td></tr>
+
+<tr><td>10.2 long shadow</td>
+    <td><a href="demo/10_2_canvas_long_shadow.html">Base</a></td></tr>
+</table>
+
+</body>
+</html>

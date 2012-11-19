@@ -1,0 +1,55 @@
+FlashCanvas Pro
+===============
+
+Version 1.2.1 (Jun. 14, 2010)
+-----------------------------
+
+ - Supported Flash Player 10.1.
+ - Included one more Canvas game.
+
+
+Version 1.2 (Apr. 23, 2010)
+---------------------------
+
+ - Added a code which emulates ExplorerCanvas library.
+ - Implemented asynchronous data transfer via FlashVars.
+ - Made it possible to use FlashCanvas library installed in other domain.
+ - Optimized drawImage().
+ - Optimized fillText() and strokeText().
+ - Implemented setOptions() method to configure FlashCanvas.
+   - "disableContextMenu" option
+   - "turbo" option
+   - "delay" option
+ - Fixed a bug that fillText(), strokeText(), measureText() caused an
+   error when the first argument was number.
+ - Fixed a bug that swf.resize() method could be called before
+   ExternalInterface was ready for use.
+ - Switched to using onunload event instead of onbeforeunload event.
+ - Included several additional Canvas demos.
+
+
+Version 1.1 (Feb. 28, 2010)
+---------------------------
+
+ - Various bug fixes in drawImage().
+   - draw-image-flip.html, an example from ExplorerCanvas project, is
+     now rendered correctly.
+   - Images are rendered in the right order.
+ - Optimized stroke().
+   - 5_2_canvas_translate.html and 5_4_canvas_scale.html, examples from
+     Mozilla Developer Center, are now rendered in a moment.
+ - Optimized fillText() and strokeText().
+ - Optimized drawImage().
+   - example3.html and resizing.html, examples from ExplorerCanvas
+     project, are now rendered smoothly.
+ - Reduced CPU time consumption.
+ - Added JPEG support to toDataURL().
+ - Implemented "Save Image As..." in the right-click context menu.
+ - Implemented event bubbling for click and dblclick events.
+ - Removed ambiguity from the license.
+
+
+Version 1.0 (Feb. 7, 2010)
+--------------------------
+
+ - Initial release

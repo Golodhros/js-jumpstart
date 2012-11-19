@@ -1,0 +1,44 @@
+<head>
+    <script src="http://www.html5canvastutorials.com/libraries/kinetic-v3.9.0.js">
+    </script>
+    <script>
+        window.onload = function() {
+            var stage = new Kinetic.Stage({
+                container: "container",
+                width: 578,
+                height: 200
+            });
+            var layer = new Kinetic.Layer();
+ 
+            var circle = new Kinetic.Circle({
+                x: stage.width / 2,
+                y: stage.height / 2 + 10,
+                radius: 70,
+                fill: "red",
+                stroke: "black",
+                strokeWidth: 4
+            });
+ 
+            circle.on("click", function() {
+                alert("You clicked on the circle");
+            });
+ 
+            layer.add(circle);
+            stage.add(layer);
+ 
+            document.getElementById("removeClick").addEventListener("click", function() {
+                circle.off("click");
+                alert("onclick removed");
+            }, false);
+        };
+    </script>
+</head>
+<body onmousedown="return false;">
+    <div id="container">
+    </div>
+    <div id="buttons">
+        <button id="removeClick">
+            Remove onclick
+        </button>
+    </div>
+</body>

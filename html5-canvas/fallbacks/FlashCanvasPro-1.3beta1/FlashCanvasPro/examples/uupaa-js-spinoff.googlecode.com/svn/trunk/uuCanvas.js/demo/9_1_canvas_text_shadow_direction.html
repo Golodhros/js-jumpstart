@@ -1,0 +1,94 @@
+<!DOCTYPE html><html><head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>A canvas shadowOffset and shadowBlur example</title>
+
+<!--[if IE]><script type="text/javascript" src="../../../../../../bin/flashcanvas.js"></script><![endif]-->
+
+    <script>
+    function canvasReady() {
+      draw(document.getElementById('canvas').getContext('2d'));
+    }
+    function draw(ctx) {
+      ctx.textBaseline = "top";
+      ctx.font = "24pt Arial";
+      ctx.fillStyle = "red";
+      ctx.strokeStyle = "blue";
+
+      var text = setShadow(ctx, "black", 0, 0, 0);
+      ctx.fillText("fillText: "       + text, 20, 20);
+      text = setShadow(ctx, "black", 10, 0, 1);
+      ctx.fillText("fillText: "       + text, 20, 60);
+      text = setShadow(ctx, "black", 10, -10, 2);
+      ctx.fillText("fillText: "       + text, 20, 100);
+      text = setShadow(ctx, "black", 0, -10, 3);
+      ctx.fillText("fillText: "       + text, 20, 140);
+      text = setShadow(ctx, "black", -10, -10, 4);
+      ctx.fillText("fillText: "       + text, 20, 180);
+      text = setShadow(ctx, "black", -10, 0, 5);
+      ctx.fillText("fillText: "       + text, 20, 220);
+      text = setShadow(ctx, "black", -10, 10, 6);
+      ctx.fillText("fillText: "       + text, 20, 260);
+      text = setShadow(ctx, "black", 0, 10, 7);
+      ctx.fillText("fillText: "       + text, 20, 300);
+      text = setShadow(ctx, "black", 10, 10, 8);
+      ctx.fillText("fillText: "       + text, 20, 340);
+    }
+    function setShadow(ctx, color, ox, oy, blur) {
+      ctx.shadowColor = color;
+      ctx.shadowOffsetX = ox;
+      ctx.shadowOffsetY = oy;
+      ctx.shadowBlur = blur;
+      return [color, ox, oy, blur].join(", ");
+    }
+    </script>
+    <style type="text/css">
+      body { margin: 20px; font-family: arial,verdana,helvetica; background: #fff;}
+      h1 { font-size: 140%; font-weight:normal; color: #036; border-bottom: 1px solid #ccc; }
+      canvas { border: 2px solid #000; float: left; margin-right: 20px; margin-bottom: 20px; }
+      pre { float:left; display:block; background: rgb(238,238,238); border: 1px dashed #666; padding: 15px 20px; margin: 0 0 10px 0; }
+    </style>
+  </head>
+  <body onload="canvasReady();">
+    <h1>A canvas <code>shadowOffset</code> and <code>shadowBlur</code> example</h1>
+    <div>
+      <canvas id="canvas" width="360" height="400"></canvas>
+      <pre>
+function canvasReady() {
+  draw(document.getElementById('canvas').getContext('2d'));
+}
+function draw(ctx) {
+  ctx.textBaseline = "top";
+  ctx.font = "24pt Arial";
+  ctx.fillStyle = "red";
+  ctx.strokeStyle = "blue";
+
+  var text = setShadow(ctx, "black", 0, 0, 0);
+  ctx.fillText("fillText: "       + text, 20, 20);
+  text = setShadow(ctx, "black", 10, 0, 1);
+  ctx.fillText("fillText: "       + text, 20, 60);
+  text = setShadow(ctx, "black", 10, -10, 2);
+  ctx.fillText("fillText: "       + text, 20, 100);
+  text = setShadow(ctx, "black", 0, -10, 3);
+  ctx.fillText("fillText: "       + text, 20, 140);
+  text = setShadow(ctx, "black", -10, -10, 4);
+  ctx.fillText("fillText: "       + text, 20, 180);
+  text = setShadow(ctx, "black", -10, 0, 5);
+  ctx.fillText("fillText: "       + text, 20, 220);
+  text = setShadow(ctx, "black", -10, 10, 6);
+  ctx.fillText("fillText: "       + text, 20, 260);
+  text = setShadow(ctx, "black", 0, 10, 7);
+  ctx.fillText("fillText: "       + text, 20, 300);
+  text = setShadow(ctx, "black", 10, 10, 8);
+  ctx.fillText("fillText: "       + text, 20, 340);
+}
+function setShadow(ctx, color, ox, oy, blur) {
+  ctx.shadowColor = color;
+  ctx.shadowOffsetX = ox;
+  ctx.shadowOffsetY = oy;
+  ctx.shadowBlur = blur;
+  return [color, ox, oy, blur].join(", ");
+}
+      </pre>
+    </div>
+  </body>
+</html>

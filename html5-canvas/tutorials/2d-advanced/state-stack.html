@@ -1,0 +1,42 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <script>
+		window.onload = function(){
+		    var canvas = document.getElementById("myCanvas");
+		    var context = canvas.getContext("2d");
+		 
+		    var rectWidth = 150;
+		    var rectHeight = 75;
+		 
+		    context.save(); // save state 1
+		    context.translate(canvas.width / 2, canvas.height / 2);
+		 
+		    context.save(); // save state 2
+		    context.rotate(Math.PI / 4);
+		 
+		    context.save(); // save state 3
+		    context.scale(2, 2);
+		 
+		    context.fillStyle = "blue";
+		    context.fillRect(-rectWidth / 2, -rectHeight / 2, rectWidth, rectHeight);
+		 
+		    context.restore(); // restore state 3
+		    context.fillStyle = "red";
+		    context.fillRect(-rectWidth / 2, -rectHeight / 2, rectWidth, rectHeight);
+		 
+		    context.restore(); // restore state 2
+		    context.fillStyle = "yellow";
+		    context.fillRect(-rectWidth / 2, -rectHeight / 2, rectWidth, rectHeight);
+		 
+		    context.restore(); // restore state 1
+		    context.fillStyle = "green";
+		    context.fillRect(-rectWidth / 2, -rectHeight / 2, rectWidth, rectHeight);
+		};
+        </script>
+    </head>
+    <body>
+        <canvas id="myCanvas" width="578" height="200">
+        </canvas>
+    </body>
+</html>

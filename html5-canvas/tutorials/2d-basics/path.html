@@ -1,0 +1,30 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <script>
+            window.onload = function(){
+                var canvas = document.getElementById("myCanvas");
+                var context = canvas.getContext("2d");
+ 
+			    // Paths
+				// context.beginPath();
+			    
+			    context.beginPath();
+			    context.moveTo(100, 20);
+			    context.lineTo(200, 160); // line 1
+			    context.quadraticCurveTo(230, 200, 250, 120); // quadratic curve
+			    context.bezierCurveTo(290, -40, 300, 200, 400, 150); // bezier curve
+			    context.lineTo(500, 90); // line 2
+			    context.lineWidth = 5;
+			    context.strokeStyle = "#0000ff";
+			    context.stroke();
+						    
+            };
+        </script>
+    </head>
+    <body>
+        <canvas id="myCanvas" width="578" height="200">
+        </canvas>
+        <img width="570" height="200" class="alignnone size-full wp-image-276" title="HTML5 Canvas Path" alt="HTML5 Canvas Path" src="http://www.html5canvastutorials.com/wp-content/uploads/2010/11/html5_canvas_path.png">
+    </body>
+</html>

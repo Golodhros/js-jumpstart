@@ -1,0 +1,92 @@
+<!DOCTYPE html><html><head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>A canvas text-shadow globalAlpha example</title>
+
+<!--[if IE]><script type="text/javascript" src="../../../../../../bin/flashcanvas.js"></script><![endif]-->
+
+    <script>
+    function canvasReady() {
+      draw(document.getElementById('canvas').getContext('2d'));
+    }
+    function draw(ctx) {
+        ctx.translate(-10, 5);
+        ctx.scale(1.2, 0.8);
+        ctx.rotate(5 * Math.PI / 180);
+
+      ctx.globalAlpha   = 0.5;
+      ctx.font          = "24pt Arial";
+      ctx.textBaseline  = "top";
+      ctx.fillStyle     = "red";
+      ctx.strokeStyle   = "blue";
+
+      var text = setShadow(ctx, "gray", 0, 0, 0);
+      ctx.fillText("fillText: "     + text, 10, 20);
+      ctx.strokeText("strokeText: " + text, 10, 200);
+      text = setShadow(ctx, "gray", 4, 4, 4);
+      ctx.fillText("fillText: "     + text, 10, 60);
+      ctx.strokeText("strokeText: " + text, 10, 240);
+      text = setShadow(ctx, "pink", -4, -4, 4);
+      ctx.fillText("fillText: "     + text, 10, 100);
+      ctx.strokeText("strokeText: " + text, 10, 280);
+      text = setShadow(ctx, "green", 1, 1, 4);
+      ctx.fillText("fillText: "     + text, 10, 140);
+      ctx.strokeText("strokeText: " + text, 10, 320);
+    }
+    function setShadow(ctx, color, ox, oy, blur) {
+      ctx.shadowColor = color;
+      ctx.shadowOffsetX = ox;
+      ctx.shadowOffsetY = oy;
+      ctx.shadowBlur = blur;
+      return [color, ox, oy, blur].join(", ");
+    }
+    </script>
+    <style type="text/css">
+      body { margin: 20px; font-family: arial,verdana,helvetica; background: #fff;}
+      h1 { font-size: 140%; font-weight:normal; color: #036; border-bottom: 1px solid #ccc; }
+      canvas { border: 2px solid #000; float: left; margin-right: 20px; margin-bottom: 20px; }
+      pre { float:left; display:block; background: rgb(238,238,238); border: 1px dashed #666; padding: 15px 20px; margin: 0 0 10px 0; }
+    </style>
+  </head>
+  <body onload="canvasReady();">
+    <h1>A canvas <code>text-shadow globalAlpha</code> example</h1>
+    <div>
+      <canvas id="canvas" width="360" height="360"></canvas>
+      <pre>
+function canvasReady() {
+  draw(document.getElementById('canvas').getContext('2d'));
+}
+function draw(ctx) {
+    ctx.translate(-10, 5);
+    ctx.scale(1.2, 0.8);
+    ctx.rotate(5 * Math.PI / 180);
+
+  ctx.globalAlpha   = 0.5;
+  ctx.font          = "24pt Arial";
+  ctx.textBaseline  = "top";
+  ctx.fillStyle     = "red";
+  ctx.strokeStyle   = "blue";
+
+  var text = setShadow(ctx, "gray", 0, 0, 0);
+  ctx.fillText("fillText: "     + text, 10, 20);
+  ctx.strokeText("strokeText: " + text, 10, 200);
+  text = setShadow(ctx, "gray", 4, 4, 4);
+  ctx.fillText("fillText: "     + text, 10, 60);
+  ctx.strokeText("strokeText: " + text, 10, 240);
+  text = setShadow(ctx, "pink", -4, -4, 4);
+  ctx.fillText("fillText: "     + text, 10, 100);
+  ctx.strokeText("strokeText: " + text, 10, 280);
+  text = setShadow(ctx, "green", 1, 1, 4);
+  ctx.fillText("fillText: "     + text, 10, 140);
+  ctx.strokeText("strokeText: " + text, 10, 320);
+}
+function setShadow(ctx, color, ox, oy, blur) {
+  ctx.shadowColor = color;
+  ctx.shadowOffsetX = ox;
+  ctx.shadowOffsetY = oy;
+  ctx.shadowBlur = blur;
+  return [color, ox, oy, blur].join(", ");
+}
+      </pre>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,87 @@
+<head>
+    <script src="http://www.html5canvastutorials.com/libraries/kinetic-v3.9.0.js">
+    </script>
+    <script>
+        window.onload = function() {
+            var stage = new Kinetic.Stage({
+                container: "container",
+                width: 578,
+                height: 200
+            });
+            var layer = new Kinetic.Layer();
+ 
+            /*
+             * leave center point positioned
+             * at the default which is at the center
+             * of the hexagon
+             */
+            var blueHex = new Kinetic.RegularPolygon({
+                x: 100,
+                y: stage.height / 2,
+                sides: 6,
+                radius: 70,
+                fill: "#00D2FF",
+                stroke: "black",
+                strokeWidth: 4,
+                draggable: true
+            });
+ 
+            var yellowHex = new Kinetic.RegularPolygon({
+                x: stage.width / 2,
+                y: stage.height / 2,
+                sides: 6,
+                radius: 70,
+                fill: "yellow",
+                stroke: "black",
+                strokeWidth: 4,
+                draggable: true
+            });
+ 
+            /*
+             * move center point to right side
+             * of hexagon
+             */
+            var redHex = new Kinetic.RegularPolygon({
+                x: 470,
+                y: stage.height / 2,
+                sides: 6,
+                radius: 70,
+                fill: "red",
+                stroke: "black",
+                strokeWidth: 4,
+                centerOffset: {
+                    x: 70,
+                    y: 0
+                },
+                draggable: true
+            });
+ 
+            layer.add(blueHex);
+            layer.add(yellowHex);
+            layer.add(redHex);
+            stage.add(layer);
+ 
+            var period = 2000;
+            // in ms
+            stage.onFrame(function(frame) {
+                var scale = Math.sin(frame.time * 2 * Math.PI / period) + 0.001;
+                // scale x and y
+                blueHex.setScale(scale);
+ 
+                // scale only y
+                yellowHex.scale.y = scale;
+ 
+                // scale only x
+                redHex.scale.x = scale;
+ 
+                layer.draw();
+            });
+ 
+            stage.start();
+        };
+    </script>
+</head>
+<body onmousedown="return false;">
+    <div id="container">
+    </div>
+</body>

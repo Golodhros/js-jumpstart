@@ -1,0 +1,70 @@
+<!DOCTYPE html><html><head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>A canvas measureText example</title>
+
+<!--[if IE]><script type="text/javascript" src="../../../../../../bin/flashcanvas.js"></script><![endif]-->
+
+    <script>
+    function canvasReady() {
+      draw(document.getElementById('canvas').getContext('2d'));
+    }
+    function draw(ctx) {
+        ctx.translate(-10, 5);
+        ctx.scale(1.2, 0.8);
+        ctx.rotate(5 * Math.PI / 180);
+
+      var fillText = "measureText";
+
+      ctx.textBaseline = "top";
+      ctx.font = "32pt Arial";
+
+      ctx.fillStyle = "red";
+      ctx.fillText(fillText, 20, 20);
+
+      var dim = ctx.measureText(fillText);
+      ctx.font = "16pt Serif";
+
+      ctx.fillStyle = "orange";
+      ctx.fillText(["width:", Math.round(dim.width), "px,",
+                    "height:", Math.round(dim.height || 0), "px"].join(" "), 20, 80);
+    }
+    </script>
+    <style type="text/css">
+      body { margin: 20px; font-family: arial,verdana,helvetica; background: #fff;}
+      h1 { font-size: 140%; font-weight:normal; color: #036; border-bottom: 1px solid #ccc; }
+      canvas { border: 2px solid #000; float: left; margin-right: 20px; margin-bottom: 20px; }
+      pre { float:left; display:block; background: rgb(238,238,238); border: 1px dashed #666; padding: 15px 20px; margin: 0 0 10px 0; }
+    </style>
+  </head>
+  <body onload="canvasReady();">
+    <h1>A canvas <code>measureText</code> example</h1>
+    <div>
+      <canvas id="canvas" width="350" height="150"></canvas>
+      <pre>
+function canvasReady() {
+  draw(document.getElementById('canvas').getContext('2d'));
+}
+function draw(ctx) {
+    ctx.translate(-10, 5);
+    ctx.scale(1.2, 0.8);
+    ctx.rotate(5 * Math.PI / 180);
+
+  var fillText = "measureText";
+
+  ctx.textBaseline = "top";
+  ctx.font = "32pt Arial";
+
+  ctx.fillStyle = "red";
+  ctx.fillText(fillText, 20, 20);
+
+  var dim = ctx.measureText(fillText);
+  ctx.font = "16pt Serif";
+
+  ctx.fillStyle = "orange";
+  ctx.fillText(["width:", Math.round(dim.width), "px,",
+                "height:", Math.round(dim.height || 0), "px"].join(" "), 20, 80);
+}
+      </pre>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,181 @@
+<!DOCTYPE html><html><head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+    <title>A canvas createGradient and createPattern example</title>
+    <meta name="DC.creator" content="Takao Obara">
+
+<!--[if IE]><script type="text/javascript" src="../../../../../../bin/flashcanvas.js"></script><![endif]-->
+
+    <script>
+      function canvasReady() {
+        draw(document.getElementById('canvas').getContext('2d'));
+      }
+      function draw(ctx) {
+        var grad1 = ctx.createLinearGradient(200,0, 400,200);
+        grad1.addColorStop(0,    'yellow');
+        grad1.addColorStop(0.25, 'red');
+        grad1.addColorStop(0.75, 'blue');
+        grad1.addColorStop(1,    'limegreen');
+        ctx.fillStyle = grad1;
+        ctx.fillRect(200,0, 200,200);
+
+        var grad2 = ctx.createRadialGradient(100,100,20,100,100,100);
+        grad2.addColorStop(0,    'yellow');
+        grad2.addColorStop(0.25, 'red');
+        grad2.addColorStop(0.75, 'blue');
+        grad2.addColorStop(1,    'limegreen');
+        ctx.fillStyle = grad2;
+        ctx.fillRect(0,0, 200,200);
+
+        var x = 200, y = 200;
+        var grad3 = ctx.createRadialGradient(x + 100, y + 100, 50, x + 100, y + 100, 100);
+        grad3.addColorStop(0,    'yellow');
+        grad3.addColorStop(0.25, 'red');
+        grad3.addColorStop(0.75, 'blue');
+        grad3.addColorStop(1,    'limegreen');
+        ctx.fillStyle = grad3;
+        ctx.fillRect(x, y, 200, 200);
+
+        var img1 = new Image();
+        img1.onload = function() {
+//      alert("img onload");
+          var pat1 = ctx.createPattern(img1, "repeat");
+          ctx.fillStyle = pat1;
+          ctx.fillRect(0,200, 200,200);
+
+          // prevent IE6 memory leak
+          img1 = null;
+        };
+        img1.onerror = function() {
+          alert("img onerror");
+
+          // prevent IE6 memory leak
+          img1 = null;
+        }
+        img1.src = "../img/i32.png";
+
+        var grad1 = ctx.createLinearGradient(600, 200, 400,0);
+        grad1.addColorStop(0,    'yellow');
+        grad1.addColorStop(0.25, 'red');
+        grad1.addColorStop(0.75, 'blue');
+        grad1.addColorStop(1,    'limegreen');
+        ctx.fillStyle = grad1;
+        box(ctx, 400, 0, 200, 200, 40);
+      }
+      function curve(ctx) {
+        var a = arguments, q = a.length === 4 + 1;
+        q ? ctx.quadraticCurveTo(a[1], a[2], a[3], a[4])
+          : ctx.bezierCurveTo(a[1], a[2], a[3], a[4], a[5], a[6]);
+      }
+      function box(ctx, x, y, w, h, r /* = 0 */, wire /* = false */) {
+        if (!r) {
+          (wire || false) ? ctx.strokeRect(x, y, w, h) : ctx.fillRect(x, y, w, h);
+        }
+        ctx.beginPath();
+        ctx.moveTo(x, y + r);
+        ctx.lineTo(x, y + h - r);
+        curve(ctx, x, y + h, x + r, y + h);
+        ctx.lineTo(x + w - r, y + h);
+        curve(ctx, x + w, y + h, x + w, y + h - r);
+        ctx.lineTo(x + w, y + r);
+        curve(ctx, x + w, y, x + w - r, y);
+        ctx.lineTo(x + r, y);
+        curve(ctx, x, y, x, y + r);
+        (wire || false) ? ctx.stroke() : ctx.fill();
+        ctx.closePath();
+      }
+
+    </script>
+    <style type="text/css">
+      body { margin: 20px; font-family: arial,verdana,helvetica; background: #fff;}
+      h1 { font-size: 140%; font-weight:normal; color: #036; border-bottom: 1px solid #ccc; }
+      canvas { border: 2px solid #000; float: left; margin-right: 20px; margin-bottom: 20px; }
+      pre { float:left; display:block; background: rgb(238,238,238); border: 1px dashed #666; padding: 15px 20px; margin: 0 0 10px 0; }
+    </style>
+  </head>
+  <body onload="canvasReady();">
+    <h1>A canvas <code>createGradient</code> and <code>createPattern</code> example</h1>
+    <div>
+        <canvas id="canvas" width="600" height="400"></canvas>
+      <pre>
+function canvasReady() {
+  draw(document.getElementById('canvas').getContext('2d'));
+}
+function draw(ctx) {
+  var grad1 = ctx.createLinearGradient(200,0, 400,200);
+  grad1.addColorStop(0,    'yellow');
+  grad1.addColorStop(0.25, 'red');
+  grad1.addColorStop(0.75, 'blue');
+  grad1.addColorStop(1,    'limegreen');
+  ctx.fillStyle = grad1;
+  ctx.fillRect(200,0, 200,200);
+
+  var grad2 = ctx.createRadialGradient(100,100,20,100,100,100);
+  grad2.addColorStop(0,    'yellow');
+  grad2.addColorStop(0.25, 'red');
+  grad2.addColorStop(0.75, 'blue');
+  grad2.addColorStop(1,    'limegreen');
+  ctx.fillStyle = grad2;
+  ctx.fillRect(0,0, 200,200);
+
+  var x = 200, y = 200;
+  var grad3 = ctx.createRadialGradient(x + 100, y + 100, 50, x + 100, y + 100, 100);
+  grad3.addColorStop(0,    'yellow');
+  grad3.addColorStop(0.25, 'red');
+  grad3.addColorStop(0.75, 'blue');
+  grad3.addColorStop(1,    'limegreen');
+  ctx.fillStyle = grad3;
+  ctx.fillRect(x, y, 200, 200);
+
+  var img1 = new Image();
+  img1.src = "../img/i32.png";
+  img1.onload = function() {
+//alert("img onload");
+    var pat1 = ctx.createPattern(img1, "repeat");
+    ctx.fillStyle = pat1;
+    ctx.fillRect(0,200, 200,200);
+
+    // prevent IE6 memory leak
+    img1 = null;
+  };
+  img1.onerror = function() {
+    alert("img onerror");
+
+    // prevent IE6 memory leak
+    img1 = null;
+  }
+
+  var grad1 = ctx.createLinearGradient(600, 200, 400,0);
+  grad1.addColorStop(0,    'yellow');
+  grad1.addColorStop(0.25, 'red');
+  grad1.addColorStop(0.75, 'blue');
+  grad1.addColorStop(1,    'limegreen');
+  ctx.fillStyle = grad1;
+  box(ctx, 400, 0, 200, 200, 40);
+}
+function curve(ctx) {
+  var a = arguments, q = a.length === 4 + 1;
+  q ? ctx.quadraticCurveTo(a[1], a[2], a[3], a[4])
+    : ctx.bezierCurveTo(a[1], a[2], a[3], a[4], a[5], a[6]);
+}
+function box(ctx, x, y, w, h, r /* = 0 */, wire /* = false */) {
+  if (!r) {
+    (wire || false) ? ctx.strokeRect(x, y, w, h) : ctx.fillRect(x, y, w, h);
+  }
+  ctx.beginPath();
+  ctx.moveTo(x, y + r);
+  ctx.lineTo(x, y + h - r);
+  curve(ctx, x, y + h, x + r, y + h);
+  ctx.lineTo(x + w - r, y + h);
+  curve(ctx, x + w, y + h, x + w, y + h - r);
+  ctx.lineTo(x + w, y + r);
+  curve(ctx, x + w, y, x + w - r, y);
+  ctx.lineTo(x + r, y);
+  curve(ctx, x, y, x, y + r);
+  (wire || false) ? ctx.stroke() : ctx.fill();
+  ctx.closePath();
+}
+      </pre>
+    </div>
+  </body>
+</html>

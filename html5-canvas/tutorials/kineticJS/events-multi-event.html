@@ -1,0 +1,50 @@
+<head>
+    <script src="http://www.html5canvastutorials.com/libraries/kinetic-v3.9.0.js">
+    </script>
+    <script>
+        function writeMessage(messageLayer, message) {
+            var context = messageLayer.getContext();
+            messageLayer.clear();
+            context.font = "18pt Calibri";
+            context.fillStyle = "black";
+            context.fillText(message, 10, 25);
+        }
+ 
+        window.onload = function() {
+            var stage = new Kinetic.Stage({
+                container: "container",
+                width: 578,
+                height: 200
+            });
+            var circleLayer = new Kinetic.Layer();
+            var messageLayer = new Kinetic.Layer();
+ 
+            var numEvents = 0;
+ 
+            var circle = new Kinetic.Circle({
+                x: stage.width / 2,
+                y: stage.height / 2 + 10,
+                radius: 70,
+                fill: "red",
+                stroke: "black",
+                strokeWidth: 4
+            });
+ 
+            circle.on("mouseover mousedown mouseup", function() {
+                writeMessage(messageLayer, "Multi-event binding!  Events: " + (++numEvents));
+            });
+            circle.on("mouseout", function() {
+                writeMessage(messageLayer, "");
+            });
+ 
+            circleLayer.add(circle);
+ 
+            stage.add(circleLayer);
+            stage.add(messageLayer);
+        };
+    </script>
+</head>
+<body onmousedown="return false;">
+    <div id="container">
+    </div>
+</body>

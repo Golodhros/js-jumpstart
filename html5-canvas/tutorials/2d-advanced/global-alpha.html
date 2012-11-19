@@ -1,0 +1,26 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <script>
+		window.onload = function(){
+		    var canvas = document.getElementById("myCanvas");
+		    var context = canvas.getContext("2d");
+		 
+		    context.beginPath();
+		    context.rect(200, 20, 100, 100);
+		    context.fillStyle = "blue";
+		    context.fill();
+		 
+		    context.globalAlpha = 0.5; // set global alpha
+		    context.beginPath();
+		    context.arc(320, 120, 60, 0, 2 * Math.PI, false);
+		    context.fillStyle = "red";
+		    context.fill();
+		};
+        </script>
+    </head>
+    <body>
+        <canvas id="myCanvas" width="578" height="200">
+        </canvas>
+    </body>
+</html>

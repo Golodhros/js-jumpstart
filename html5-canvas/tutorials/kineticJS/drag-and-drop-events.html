@@ -1,0 +1,53 @@
+<head>
+    <script src="http://www.html5canvastutorials.com/libraries/kinetic-v3.9.0.js">
+    </script>
+    <script>
+        function writeMessage(messageLayer, message) {
+            var context = messageLayer.getContext();
+            messageLayer.clear();
+            context.font = "18pt Calibri";
+            context.fillStyle = "black";
+            context.fillText(message, 10, 25);
+        }
+ 
+        window.onload = function() {
+            var stage = new Kinetic.Stage({
+                container: "container",
+                width: 578,
+                height: 200
+            });
+            var boxLayer = new Kinetic.Layer();
+            var messageLayer = new Kinetic.Layer();
+            var rectX = stage.width / 2 - 50;
+            var rectY = stage.height / 2 - 25;
+ 
+            var box = new Kinetic.Rect({
+                x: rectX,
+                y: rectY,
+                width: 100,
+                height: 50,
+                fill: "#00D2FF",
+                stroke: "black",
+                strokeWidth: 4,
+                draggable: true
+            });
+ 
+            // write out drag and drop events
+            box.on("dragstart", function() {
+                writeMessage(messageLayer, "dragstart");
+            });
+            box.on("dragend", function() {
+                writeMessage(messageLayer, "dragend");
+            });
+ 
+            boxLayer.add(box);
+ 
+            stage.add(messageLayer);
+            stage.add(boxLayer);
+        };
+    </script>
+</head>
+<body onmousedown="return false;">
+    <div id="container">
+    </div>
+</body>
