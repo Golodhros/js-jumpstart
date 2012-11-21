@@ -19,15 +19,12 @@ core.dom = {
 	init : function( config ) {
 	},
 	
-	/**
-	 * Id selector
-	 * @param {Object} sId Identifier to search
-	 * @method $id
-	 */
-	$id: function(sId){
+	// 
+	$id: function( sId ){
 		if ( !sId ) {
 			return this;
 		}
+    document.querySelector('#')
 		return document.getElementById(sId);
 	},
 	
