@@ -1,0 +1,1 @@
+//bind function on Ch6
