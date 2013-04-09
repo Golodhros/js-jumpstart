@@ -30,7 +30,7 @@ var merge_sort = function (aNumbersSeq) {
     }
 	
 	var nLength  		= aNumbersSeq.length,
-		nMiddleIndex 	= Math.floor(nLength),
+		nMiddleIndex 	= Math.floor(nLength), // /2??
 		aLeft 			= aNumbersSeq.slice(0,nMiddleIndex),
 		aRight			= aNumbersSeq.slice(nMiddleIndex);
 	
