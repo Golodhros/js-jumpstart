@@ -9,7 +9,7 @@
  *  - rightTrim
  */
 
-var core = core === undefined ? {} : core; 
+var core = core === undefined ? {} : core;
 
 core = {
 	config : {
@@ -22,7 +22,7 @@ core = {
 	 */
 	init : function( config ) {
 	},
-	
+
 	/**
 	 * Adds a paramater to the given URL
 	 */
@@ -31,22 +31,22 @@ core = {
 		url += encodeURIComponent( name ) + '=' + encodeURIComponent( value );
 		return url;
 	},
-	
+
 	/**
 	 * Useful method for type validation
 	 */
 	betterTypeOf: function( input ){
         return Object.prototype.toString.call(input).match(/^\[object\s(.*)\]$/)[1];
     },
-	
+
 	/**
-	 * makes a trim over the string 
+	 * makes a trim over the string
 	 * @param targetString
 	 */
 	customTrim: function ( targetString ){
 		 return targetString.replace(/^\s+|\s+$/g, "");
 	},
-	
+
 	/**
 	 * ltrim removes spaces or given chars at the start of the string
 	 * @param targetString
@@ -55,7 +55,7 @@ core = {
         chars = chars || "\\s";
         return str.replace(new RegExp("^[" + chars + "]+", "g"), "");
     },
-	
+
 	/**
 	 * Nofifies a message in the console if we are in debug mode
 	 */
@@ -70,7 +70,7 @@ core = {
 			}
 		}
 	},
-    
+
     /**
 	 * rtrim removes spaces or given chars at the end of the string
 	 * @param targetString
@@ -79,5 +79,5 @@ core = {
         chars = chars || "\\s";
         return str.replace(new RegExp("[" + chars + "]+$", "g"), "");
     }
-	
+
 };
