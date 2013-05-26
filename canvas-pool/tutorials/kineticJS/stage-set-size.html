@@ -1,0 +1,52 @@
+<head>
+    <script src="http://www.html5canvastutorials.com/libraries/kinetic-v3.9.0.js">
+    </script>
+    <script>
+        window.onload = function() {
+            var stage = new Kinetic.Stage({
+                container: "container",
+                width: 578,
+                height: 200
+            });
+            var layer = new Kinetic.Layer();
+ 
+            var triangle = new Kinetic.RegularPolygon({
+                x: 190,
+                y: 120,
+                sides: 3,
+                radius: 80,
+                fill: "#00D2FF",
+                stroke: "black",
+                strokeWidth: 4
+            });
+ 
+            layer.add(triangle);
+ 
+            var circle = new Kinetic.Circle({
+                x: 380,
+                y: stage.height / 2,
+                radius: 70,
+                fill: "red",
+                stroke: "black",
+                strokeWidth: 4
+            });
+ 
+            layer.add(circle);
+            stage.add(layer);
+ 
+            document.getElementById("resize").addEventListener("click", function() {
+                stage.setSize(300, 150);
+                stage.draw();
+            }, false);
+        };
+    </script>
+</head>
+<body onmousedown="return false;">
+    <div id="container">
+    </div>
+    <div id="buttons">
+        <button id="resize">
+            Resize me
+        </button>
+    </div>
+</body>

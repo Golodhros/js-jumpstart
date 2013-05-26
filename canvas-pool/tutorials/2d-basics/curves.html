@@ -1,0 +1,32 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <script>
+            window.onload = function(){
+                var canvas = document.getElementById("myCanvas");
+                var context = canvas.getContext("2d");
+ 
+			    // Canvas Arc
+				// context.arc(centerX, centerY, radius, startingAngle, endingAngle, antiClockwise);
+			    
+			    var centerX = canvas.width / 2;
+			    var centerY = canvas.height / 2;
+			    var radius = 75;
+			    var startingAngle = 1.1 * Math.PI;
+			    var endingAngle = 1.9 * Math.PI;
+			    var counterclockwise = false;
+			 
+			    context.arc(centerX, centerY, radius, startingAngle, endingAngle, counterclockwise);
+			    context.lineWidth = 15;
+			    context.strokeStyle = "black"; 
+			    context.stroke();
+			    
+            };
+        </script>
+    </head>
+    <body>
+        <canvas id="myCanvas" width="578" height="200">
+        </canvas>
+        <img width="570" height="250" class="alignnone size-full wp-image-1173" title="HTML5 Canvas Arc Tutorial" alt="" src="http://www.html5canvastutorials.com/wp-content/uploads/2010/11/html5_canvas_arc6.png">
+    </body>
+</html>

@@ -1,0 +1,68 @@
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=0.552, user-scalable=no"/>
+    <script src="http://www.html5canvastutorials.com/libraries/kinetic-v3.9.0.js">
+    </script>
+    <script>
+        function writeMessage(messageLayer, message) {
+            var context = messageLayer.getContext();
+            messageLayer.clear();
+            context.font = "18pt Calibri";
+            context.fillStyle = "black";
+            context.fillText(message, 10, 25);
+        }
+ 
+        window.onload = function() {
+            var stage = new Kinetic.Stage({
+                container: "container",
+                width: 578,
+                height: 200
+            });
+            var shapesLayer = new Kinetic.Layer();
+            var messageLayer = new Kinetic.Layer();
+ 
+            var triangle = new Kinetic.RegularPolygon({
+                x: 190,
+                y: 120,
+                sides: 3,
+                radius: 80,
+                fill: "#00D2FF",
+                stroke: "black",
+                strokeWidth: 4
+            });
+ 
+            triangle.on("touchmove", function() {
+                var touchPos = stage.getTouchPosition();
+                var x = touchPos.x - 190;
+                var y = touchPos.y - 40;
+                writeMessage(messageLayer, "x: " + x + ", y: " + y);
+            });
+ 
+            shapesLayer.add(triangle);
+ 
+            var circle = new Kinetic.Circle({
+                x: 380,
+                y: stage.height / 2,
+                radius: 70,
+                fill: "red",
+                stroke: "black",
+                strokeWidth: 4
+            });
+ 
+            circle.on("touchstart", function() {
+                writeMessage(messageLayer, "Touchstart circle");
+            });
+            circle.on("touchend", function() {
+                writeMessage(messageLayer, "Touchend circle");
+            });
+ 
+            shapesLayer.add(circle);
+ 
+            stage.add(shapesLayer);
+            stage.add(messageLayer);
+        };
+    </script>
+</head>
+<body>
+    <div id="container">
+    </div>
+</body>

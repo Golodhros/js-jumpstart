@@ -1,0 +1,52 @@
+<head>
+    <script src="http://www.html5canvastutorials.com/libraries/kinetic-v3.9.0.js">
+    </script>
+    <script>
+        window.onload = function() {
+            var stage = new Kinetic.Stage({
+                container: "container",
+                width: 578,
+                height: 200
+            });
+ 
+            var layer = new Kinetic.Layer();
+ 
+            var points = [{
+                x: 73,
+                y: 192
+            }, {
+                x: 73,
+                y: 160
+            }, {
+                x: 340,
+                y: 23
+            }, {
+                x: 500,
+                y: 109
+            }, {
+                x: 499,
+                y: 139
+            }, {
+                x: 342,
+                y: 93
+            }];
+ 
+            var poly = new Kinetic.Polygon({
+                points: points,
+                fill: "#00D2FF",
+                stroke: "black",
+                strokeWidth: 5
+            });
+ 
+            // add the shape to the layer
+            layer.add(poly);
+ 
+            // add the layer to the stage
+            stage.add(layer);
+        };
+    </script>
+</head>
+<body onmousedown="return false;">
+    <div id="container">
+    </div>
+</body>

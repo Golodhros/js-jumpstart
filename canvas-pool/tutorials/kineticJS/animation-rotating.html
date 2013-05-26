@@ -1,0 +1,83 @@
+<head>
+    <script src="http://www.html5canvastutorials.com/libraries/kinetic-v3.9.0.js">
+    </script>
+    <script>
+        window.onload = function() {
+            var stage = new Kinetic.Stage({
+                container: "container",
+                width: 578,
+                height: 200
+            });
+            var layer = new Kinetic.Layer();
+ 
+            /*
+             * leave center point positioned
+             * at the default which is the top left
+             * corner of the rectangle
+             */
+            var blueRect = new Kinetic.Rect({
+                x: 50,
+                y: 75,
+                width: 100,
+                height: 50,
+                fill: "#00D2FF",
+                stroke: "black",
+                strokeWidth: 4
+            });
+ 
+            /*
+             * move center point to the center
+             * of the rectangle with centerOffset
+             */
+            var yellowRect = new Kinetic.Rect({
+                x: 220,
+                y: 75,
+                width: 100,
+                height: 50,
+                fill: "yellow",
+                stroke: "black",
+                strokeWidth: 4,
+                centerOffset: {
+                    x: 50,
+                    y: 25
+                }
+            });
+ 
+            /*
+             * move center point outside of the rectangle
+             * with centerOffset
+             */
+            var redRect = new Kinetic.Rect({
+                x: 400,
+                y: 75,
+                width: 100,
+                height: 50,
+                fill: "red",
+                stroke: "black",
+                strokeWidth: 4,
+                centerOffset: {
+                    x: -100,
+                    y: 0
+                }
+            });
+ 
+            layer.add(blueRect);
+            layer.add(yellowRect);
+            layer.add(redRect);
+            stage.add(layer);
+ 
+            stage.onFrame(function(frame) {
+                blueRect.rotate(Math.PI / 100);
+                yellowRect.rotate(Math.PI / 100);
+                redRect.rotate(Math.PI / 100);
+                layer.draw();
+            });
+ 
+            stage.start();
+        };
+    </script>
+</head>
+<body onmousedown="return false;">
+    <div id="container">
+    </div>
+</body>

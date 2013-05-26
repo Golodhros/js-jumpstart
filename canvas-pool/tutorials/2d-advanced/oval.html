@@ -1,0 +1,33 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <script>
+		window.onload = function(){
+		    var canvas = document.getElementById("myCanvas");
+		    var context = canvas.getContext("2d");
+		 
+		    context.save(); // save state
+		    var centerX = 0;
+		    var centerY = 0;
+		    var radius = 50;
+		 
+		    context.translate(canvas.width / 2, canvas.height / 2);
+		    context.scale(2, 1);
+		 
+		    context.beginPath();
+		    context.arc(centerX, centerY, radius, 0, 2 * Math.PI, false);
+		 
+		    context.restore(); // restore to original state
+		    context.fillStyle = "#8ED6FF";
+		    context.fill();
+		    context.lineWidth = 5;
+		    context.strokeStyle = "black";
+		    context.stroke();
+		};
+        </script>
+    </head>
+    <body>
+        <canvas id="myCanvas" width="578" height="200">
+        </canvas>
+    </body>
+</html>

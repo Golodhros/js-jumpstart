@@ -1,0 +1,42 @@
+<head>
+    <script src="http://www.html5canvastutorials.com/libraries/kinetic-v3.9.0.js">
+    </script>
+    <script>
+        window.onload = function() {
+            var stage = new Kinetic.Stage({
+                container: "container",
+                width: 578,
+                height: 200
+            });
+            var layer = new Kinetic.Layer();
+ 
+            var hexagon = new Kinetic.RegularPolygon({
+                x: stage.width / 2,
+                y: stage.height / 2,
+                sides: 6,
+                radius: 70,
+                fill: "red",
+                stroke: "black",
+                strokeWidth: 4
+            });
+ 
+            layer.add(hexagon);
+            stage.add(layer);
+ 
+            var amplitude = 150;
+            var period = 2000; // in ms
+            var centerX = stage.width / 2;
+ 
+            stage.onFrame(function(frame) {
+                hexagon.x = amplitude * Math.sin(frame.time * 2 * Math.PI / period) + centerX;
+                layer.draw();
+            });
+ 
+            stage.start();
+        };
+    </script>
+</head>
+<body onmousedown="return false;">
+    <div id="container">
+    </div>
+</body>

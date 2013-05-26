@@ -1,0 +1,30 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <script>
+            window.onload = function(){
+                var canvas = document.getElementById("myCanvas");
+                var context = canvas.getContext("2d");
+ 
+			    // Fill Styles - Linear Gradient
+				// var pattern = context.createPattern(imageObj, repeatOption);
+				// context.fillStyle = pattern;
+				// context.fill();
+
+			   	var imageObj = new Image();
+			    imageObj.onload = function(){
+			        var pattern = context.createPattern(imageObj, "repeat");
+			 
+			        context.rect(10, 10, canvas.width - 20, canvas.height - 20);     
+			        context.fillStyle = pattern;
+			        context.fill();
+			    };
+			    imageObj.src = "img/wood-pattern.png";
+            };
+        </script>
+    </head>
+    <body>
+        <canvas id="myCanvas" width="578" height="200">
+        </canvas>
+    </body>
+</html>

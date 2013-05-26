@@ -1,0 +1,54 @@
+<head>
+    <script src="http://www.html5canvastutorials.com/libraries/kinetic-v3.9.0.js">
+    </script>
+    <script>
+        window.onload = function() {
+            var stage = new Kinetic.Stage({
+                container: "container",
+                width: 578,
+                height: 200
+            });
+            var layer = new Kinetic.Layer();
+            var rectHeight = 50;
+            var rectWidth = 100;
+            var rectY = (stage.height - rectHeight) / 2;
+ 
+            var hbox = new Kinetic.Text({
+                x: 120,
+                y: 70,
+                fill: "#00D2FF",
+                strokeWidth: 4,
+                fontSize: 18,
+                fontFamily: "Calibri",
+                text: "horizontal",
+                textFill: "black",
+                padding: 15,
+                draggable: true,
+                dragConstraint: "horizontal"
+            });
+ 
+            var vbox = new Kinetic.Text({
+                x: 350,
+                y: 70,
+                fill: "yellow",
+                strokeWidth: 4,
+                draggable: true,
+                fontSize: 18,
+                fontFamily: "Calibri",
+                text: "vertical",
+                textFill: "black",
+                padding: 15,
+                draggable: true,
+                dragConstraint: "vertical"
+            });
+ 
+            layer.add(hbox);
+            layer.add(vbox);
+            stage.add(layer);
+        };
+    </script>
+</head>
+<body onmousedown="return false;">
+    <div id="container">
+    </div>
+</body>
