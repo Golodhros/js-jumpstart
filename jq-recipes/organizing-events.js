@@ -1,17 +1,23 @@
-/**
+/*
  * JQuery Event Organization
  * Using Object Literals
  * Reference: http://www.position-absolute.com/articles/organizing-events-with-jquery/?utm_source=javascriptweekly&utm_medium=email
  */
- var myapp.dashboard = {
-    loadEvents: function(){
+ APP.exampleModule = {
+
+    config: {
+        btn1Class: '.class',
+        btn2Class: '.class_alt'
+    },
+
+    addEvents: function(){
         var $dashboard = $(".dashboard");
 
         if(!$dashboard.length) return;
 
         $dashboard
-            .on("click", "#myButton", $.proxy(this.handleSelectedOption, this))
-            .on("click", "#myButton2", $.proxy(this.handleDoSomething, this, variable));
+            .on("click", this.config.btn1Class, $.proxy(this.handleSelectedOption, this))
+            .on("click", this.config.btn1Class, $.proxy(this.handleDoSomething, this, variable));
     },
 
     handleSelectedOption: function(e){
@@ -32,6 +38,3 @@
         //Do Something
     }
 };
-
-$(document).ready(function(){ myapp.dashboard.loadEvents() })
-

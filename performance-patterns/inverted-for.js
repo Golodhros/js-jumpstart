@@ -1,5 +1,5 @@
-/**
- * Bucle for invertido para mejor performance
+/*
+ * Inverted loop for improved performance
  */
 var aArray = ['a', 'b', 'c', 'd'],
 nArrayLength = aArray.length;

@@ -1,4 +1,10 @@
-APP.core = {
+/*
+ * Ajax Configuration Module
+ * Original Project: HMP
+ *
+ */
+
+APP.ajax = {
 
     config: {
         overlayClass: '.overlay',
@@ -10,18 +16,18 @@ APP.core = {
         this.config = $.extend( this.config, oConfigOptions );
         this.setUpAjax();
 
-        APP.log("----- Log ----- Loading APP.core");
+        APP.log("----- Log ----- Loading APP.ajax");
     },
 
     ajaxConf: {
         beforeSend: function(){
-            APP.core.showLoading();
+            APP.ajax.showLoading();
         },
         complete: function(){
-            APP.core.hideLoading();
+            APP.ajax.hideLoading();
         },
         error: function(x, status, error){
-            APP.notify.IOerror('An AJAX error ocurred: ' + status + '\nError: ' + error +'\nPlease, try again later!', 'high');
+            // Log Errors
         },
         cache: false,
         timeout: 5000 //Example
@@ -33,7 +39,7 @@ APP.core = {
     },
 
     showLoading: function( msg ){
-        $(this.core.config.overlayClass).show();
+        $(this.config.overlayClass).show();
         $(this.config.loaderClass).show();
     },
 
@@ -41,5 +47,4 @@ APP.core = {
         $(this.config.loaderClass).hide();
         $(this.config.overlayClass).hide();
     },
-
 };

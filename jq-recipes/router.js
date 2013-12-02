@@ -1,6 +1,13 @@
-APP.core = {
+/*
+ * Simple Page Routing Module
+ * Original Project: YP
+ *
+ */
+
+APP.router = {
 
     config: {
+        pageContainerId: "#main"
     },
 
     init: function(oConfigOptions){
@@ -8,8 +15,8 @@ APP.core = {
         this.config = $.extend( this.config, oConfigOptions );
         this.ajax = oConfigOptions.ajax || $.ajax;
 
-        APP.log("----- Log ----- Loading APP.core");
-        this.initPages();
+        APP.log("----- Log ----- Loading APP.router");
+        this.initPage();
     },
 
     pagesLookupTable: {
@@ -17,7 +24,7 @@ APP.core = {
         'profile'          : this.initProfile
     },
 
-    initPages: function(){
+    initPage: function(){
         var page = $(this.config.pageContainerId).data('page') || "default",
             error = function(){
                 HMP.notify.JSerror('No Scripts for ' + page, 'med');
@@ -33,5 +40,4 @@ APP.core = {
 
     initHome: function(){},
     initProfile: function(){}
-
-}
+};

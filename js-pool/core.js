@@ -81,3 +81,52 @@ core = {
     }
 
 };
+
+
+Core = function(){
+    var moduleData = {};
+
+    return {
+        register: function(moduleId, creator){
+            moduleData[moduleId] = {
+                creator: creator,
+                instance: null
+            };
+        },
+
+        startAll: function(){
+            for (var moduleId in moduleData){
+                if(moduleData.hasOwnProperty(moduleId)){
+                    this.start(moduleId);
+                }
+            }
+        },
+
+        stopAll: function(){
+            for (var moduleId in moduleData){
+                if(moduleData.hasOwnProperty(moduleId)){
+                    this.stop(moduleId);
+                }
+            }
+        },
+
+        start: function(moduleId){
+            moduleData[moduleId].instance = moduleData[moduleId].creator(new Sandbox(this));
+            moduleData[moduleId].instance.init();
+        },
+
+        stop: function(moduleId){
+            var data = moduleData[moduleId];
+
+            if(data.instance){
+                data.instance.destroy();
+                data.instance = null;
+            }
+        }
+    }
+};
+
+Core.register("module1", function(sandbox){});
+Core.register("module2", function(sandbox){});
+
+Core.startAll();
