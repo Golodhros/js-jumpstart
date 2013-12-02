@@ -1,3 +1,6 @@
+// String Related Methods
+APP.string = {
+
 	/**
 	 * Returns the natural days between two given dates
 	 */
@@ -59,4 +62,5 @@
 		nNowDay = now.getDate() > 9 ? now.getDate() : '0' + now.getDate();
 
 		return nNowYear + '-' + nNowMonth + '-' + nNowDay;
-	},
+	}
+};
