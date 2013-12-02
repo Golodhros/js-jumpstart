@@ -3,3 +3,4 @@
 /mobile-development
 /tdd-js
 *.svg
+.gitignore
