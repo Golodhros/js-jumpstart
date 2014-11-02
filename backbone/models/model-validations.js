@@ -1,18 +1,52 @@
-// Model Validations
+// Basic Model Validation
 var User = Backbone.Model.extend({
-    defaults: {
-        name: "",
-        age: 0
+    validation: {
+        emailRegEx: /^\s*[\w\-\+_]+(\.[\w\-
+       \+_]+)*\@[\w\-\+_]+\.[\w\-\+_]+(\.[\w\-\+_]+)*\s*$/
     },
+
+    defaults: {
+        name: '',
+        age: 0,
+        email: ''
+    },
+
     validate: function(attrs){
         if(attrs.age < 0){
-            return "Age must be 0 or higher";
+            return 'Age must be 0 or higher';
         }
+
         if(attrs.name === ''){
-            return "Must have a name";
+            return 'Must have a name';
+        }
+
+        if(!this.validation.emailRegEx.test(attrs.email)){
+            return 'Please provide a valid email';
         }
     }
 });
+
+var UserView = Backbone.View.extend({
+    initialize: function(){
+        this.model.on('invalid', this.handleError, this);
+    },
+
+    handleError: function(model, error, options){
+        alert(error);
+    }
+});
+
+var user = new User();
+var userView = new UserView({
+    model: user
+});
+
+// Set new attributes
+user.set({
+    name: '',
+    age: 5,
+    email: 'asdf##www.com'
+}, { validate: true });
 
 
 // Handling Failed Model Attribute Validation

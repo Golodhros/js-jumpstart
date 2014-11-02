@@ -30,3 +30,28 @@ getCallURL: function( sCallId ){
 
     return ( lookup[sCallId] ? lookup[sCallId] : error() );
 },
+
+// For methods, we will do this instead:
+function doSomething (condition) {
+  var lookup = {
+    'one': function () {
+      return 'one';
+    },
+
+    'two': function () {
+      return 'two';
+    },
+
+    'three': function () {
+      return 'three';
+    }
+  };
+
+  if (typeof lookup[condition] !== 'function') {
+    return 'default';
+  }
+
+  return lookup[condition]();
+}
+
+// More info here: http://designpepper.com/blog/drips/using-dispatch-tables-to-avoid-conditionals-in-javascript
