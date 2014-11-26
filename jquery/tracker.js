@@ -108,19 +108,28 @@ var tracker = {
 
 	addEvents: function(){
 		$(document)
-			.on("tracker:event", $.proxy(this.handleEvent, this));
+			.on("tracker:event", $.proxy(this.handleEvent, this))
+			.on("tracker:page", $.proxy(this.handlePageEvent, this));
 	},
 
 	handleEvent: function(e, payload){
 		this.trackEvent(payload);
 	},
 
+	handlePageEvent: function(e){
+		this.trackEvent('page');
+	},
+
 	trackEvent: function(params){
 		var self = this;
 
-		_.each(this.activeServices, function(service){
-			self.trackEventOnService(service, params);
-		});
+		if(params === 'page'){
+			this.trackGAPage();
+		}else{
+			_.each(this.activeServices, function(service){
+				self.trackEventOnService(service, params);
+			});
+		}
 	},
 
 	trackEventOnService: function(service, params){
@@ -129,24 +138,28 @@ var tracker = {
 		}
 	},
 
-	// params: {category: '', action: '', label: '', value: '', page: ''}
+	// params: {category: '', action: '', label: '', value: ''}
 	trackGAEvent: function(params){
 		// Default value is ""
 		params.value = params.value || "";
 
 		//console.log('Tracking GA Event!', params);
 	    if (typeof ga === "function"){
-	    	if(params.page){
-		    	// PageView
-		        ga('send', 'pageview', params.page);
-	    	}else{
-		        // Event
-	        	ga('send', 'event', params.category, params.action, params.label, params.value);
-		        // ga('send', 'event', 'button', 'click', 'nav buttons', 4);
-	    	}
+	        // ga('send', 'event', 'button', 'click', 'nav buttons', 4);
+        	ga('send', 'event', params.category, params.action, params.label, params.value);
 	    }else{
 	    	console.error('Google Analytics object not detected!');
 	    }
+	},
+
+	trackGAPage: function(){
+		var page = document.location.href;
+
+		if (typeof ga === "function"){
+			ga('send', 'pageview', page);
+		}else{
+			console.error('Google Analytics object not detected!');
+		}
 	},
 
 	trackMixPanelEvent: function(params){
