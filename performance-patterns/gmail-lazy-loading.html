@@ -1,0 +1,15 @@
+<script id="lazy">
+// Make sure you strip out or replace comment blocks in your JavaScript first.
+/* JavaScript of lazy module */
+</script>
+
+<script>
+function lazyLoad(){
+    var lazyElement = document.getElementById('lazy');
+    var lazyElementBody = lazyElement.innerHTML;
+    var jsCode = stripOutCommentBlock(lazyElementBody);
+    eval(jsCode);
+}
+</script>
+
+<div onclick=lazyLoad()>Lazy Load</div>

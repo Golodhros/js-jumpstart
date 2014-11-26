@@ -12,3 +12,16 @@ if(cutsTheMustard()){
     s.async = true;
     document.head.insertBefore(s, document.head.childNodes[0]);
 }
+
+// Tim Kadlec
+var rfe = {};
+if(cutsTheMustard()){
+    rfe.cutsMustard = true;
+    document.documentElement.className += ' mustard';
+
+    loadCSS('../css/fonts.css?1410230753');
+    loadJS('../js/main.js?1410230753');
+}
+
+// https://github.com/filamentgroup/loadCSS
+// https://github.com/filamentgroup/loadJS
