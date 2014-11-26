@@ -1,5 +1,6 @@
 /**
  * Tracking module to track on different services
+ * Requires _
  */
 
 // $(document).trigger('tracker:event', {page: document.location.href});
@@ -9,24 +10,27 @@
  * Event Tracking Module
  */
 var tracker = {
+
 	config: {
-		googleAnalyticsID: 'UA-30735663-6',
-		mixPanelToken    : 'f9e07e33bb6beb37566763cc5d2f1f69',
-		funnelEndPointURL: 'https://funnel.sparked.com/push'
+		googleAnalyticsID: 'XX-XXXXXXXX-X',
+		mixPanelToken    : 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'
 	},
-	// Possible services are: 'mixpanel', 'elasticsearch', 'ga'
+
+	// Possible services are: 'mixpanel' and 'ga'
 	defaultServices: ['mixpanel'],
+
 	activeServices: [],
+
 	serviceMethods: {
 		'ga'           : 'trackGAEvent',
-		'mixpanel'     : 'trackMixPanelEvent',
-		'elasticsearch': 'trackESEvent'
+		'mixpanel'     : 'trackMixPanelEvent'
 	},
+
 	serviceInitMethods: {
 		'ga'           : 'initGA',
-		'mixpanel'     : 'initMixPanel',
-		'elasticsearch': 'initES'
+		'mixpanel'     : 'initMixPanel'
 	},
+
 	init: function(services){
 		// Setup services
 		if(services && services.length){
@@ -37,6 +41,7 @@ var tracker = {
 		this.initServices();
 		this.addEvents();
 	},
+
 	initServices: function(){
 		var self = this;
 
@@ -46,6 +51,7 @@ var tracker = {
 			}
 		});
 	},
+
 	initGA: function(){
 		/* jshint ignore:start */
 		(function(i,s,o,g,r,a,m){
@@ -55,6 +61,7 @@ var tracker = {
 		/* jshint ignore:end */
 		ga('create', this.config.googleAnalyticsID, 'auto');
 	},
+
 	initMixPanel: function(){
 		/* jshint ignore:start */
 		(function(f,b){
@@ -98,38 +105,16 @@ var tracker = {
 		/* jshint ignore:end */
 		mixpanel.init(this.config.mixPanelToken);
 	},
-	initES: function(){
-		var funnelCustomerId = this.getFunnelCustomerId();
-		var userId = this.getUserId();
-		var _saq = _saq || [];
 
-		console.log('initElasticSearch!');
-	   	_saq.push(['_register', funnelCustomerId]);
-	   	_saq.push(['_identity', userId]);
-
-	   	window._saq = _saq;
-
-	   	(function() {
-	    	var sa = document.createElement('script'); sa.type = 'text/javascript'; sa.async = true;
-	       	sa.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'funnel.sparked.com/static/js/sa.min.js';
-	       	var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(sa, s);
-	   	})();
-	},
 	addEvents: function(){
 		$(document)
 			.on("tracker:event", $.proxy(this.handleEvent, this));
 	},
-	// TODO
-	getFunnelCustomerId: function(){
-		return 1;
-	},
-	// TODO
-	getUserId: function(){
-		return 1;
-	},
+
 	handleEvent: function(e, payload){
 		this.trackEvent(payload);
 	},
+
 	trackEvent: function(params){
 		var self = this;
 
@@ -137,11 +122,13 @@ var tracker = {
 			self.trackEventOnService(service, params);
 		});
 	},
+
 	trackEventOnService: function(service, params){
 		if(this.serviceMethods[service]){
 			this[this.serviceMethods[service]](params);
 		}
 	},
+
 	// params: {category: '', action: '', label: '', value: '', page: ''}
 	trackGAEvent: function(params){
 		// Default value is ""
@@ -161,6 +148,7 @@ var tracker = {
 	    	console.error('Google Analytics object not detected!');
 	    }
 	},
+
 	trackMixPanelEvent: function(params){
 		// Default value is ""
 		params.value = params.value || "";
@@ -173,36 +161,6 @@ var tracker = {
 				mixpanel.track( params.category + " " + params.action + "; " + params.label + " " + params.value );
 			}
 		}
-	},
-	trackESEvent: function(params){
-		// Default value is ""
-		params.value = params.value || "";
-
-		//console.log('Tracking ES Event!', params);
-		if(typeof _saq.push === "function"){
-			if(params.page){
-				_saq.push(['_trackPageview']);
-			}else{
-				// This is just a first version
-				var data = {
-				    "customerId": this.getFunnelCustomerId(),
-				    "time": new Date().toISOString(),
-				    "goal": params.category + " " + params.action,
-				    "source": "webapp",
-				    "identity": params.label + " " + params.value,
-				    "data": {
-				        "device": navigator.userAgent
-				    }
-				},
-				dataJSON = encodeURIComponent(JSON.stringify(data)),
-				URL = this.config.funnelEndPointURL + "?data=" + dataJSON;
-
-				$.get(URL)
-					.done(function(data){})
-					.fail(function(error){
-						console.log('failed!', error);
-					});
-			}
-		}
 	}
+
 };
