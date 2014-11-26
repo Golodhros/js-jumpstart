@@ -1,17 +1,14 @@
 /**
  * Tracking module to track on different services
- * TODO: Clean of Sparked references
  */
-var SP = {};
 
-
-// $(document).trigger('SP:event', {page: document.location.href});
-// $(document).trigger("SP:event", {category: 'UI-button', action: 'click', label: 'Reasons Explorer - sort by ' + field});
+// $(document).trigger('tracker:event', {page: document.location.href});
+// $(document).trigger("tracker:event", {category: 'UI-button', action: 'click', label: 'Reasons Explorer - sort by ' + field});
 
 /**
  * Event Tracking Module
  */
-SP.tracker = {
+var tracker = {
 	config: {
 		googleAnalyticsID: 'UA-30735663-6',
 		mixPanelToken    : 'f9e07e33bb6beb37566763cc5d2f1f69',
@@ -120,7 +117,7 @@ SP.tracker = {
 	},
 	addEvents: function(){
 		$(document)
-			.on("SP:event", $.proxy(this.handleEvent, this));
+			.on("tracker:event", $.proxy(this.handleEvent, this));
 	},
 	// TODO
 	getFunnelCustomerId: function(){
