@@ -18,7 +18,7 @@ var template = function (templateString){
 
     return function (context){
         return templateFn(_.extend({}, template.fn, context));
-    }
+    };
 };
 
 template.fn = {};
