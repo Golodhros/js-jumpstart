@@ -17,3 +17,9 @@ var AppRouter = Backbone.Router.extend({
     updateUser: function(userId){},
     removeUser: function(userId){}
 });
+
+var r = new AppRouter();
+
+r.on('route:showUsers', function(){
+    console.log('side effect code here!');
+})

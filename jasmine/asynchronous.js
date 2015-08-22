@@ -37,6 +37,7 @@ describe("Manually ticking the Jasmine Clock", function() {
 
 });
 
+// TODO: polish up
 describe("Asynchronous specs", function() {
     var value;
 
@@ -78,3 +79,30 @@ describe("Asynchronous specs", function() {
     });
 });
 
+describe('Asynchronous specs with Sinon', function() {
+
+    beforeEach(function(){
+        this.clock = sinon.useFakeTimers();
+
+        this.mapView = new MapView({
+            staticMapURL: '/fake/url',
+            el: $('.js-listing-map')
+        });
+        this.mapView.render();
+    });
+
+    afterEach(function(){
+        this.clock.restore();
+    });
+
+    it('should create an image wrapped by a link', function() {
+        var mapImage;
+
+        this.clock.tick(750);
+        mapImage = $('.static-img');
+
+        expect(mapImage.length).toBe(1);
+        expect(mapImage.parent().attr('href')).toContain('maps.google.com');
+    });
+
+});

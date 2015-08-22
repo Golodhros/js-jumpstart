@@ -1,35 +1,38 @@
 # JavaScript Jumpstart Recipes
 
-Blend of Javascript, jQuery, jQuery Mobile, AngularJS, BackboneJS, D3 and Jasmine arquitecture structures, modules, patterns and tricks that I use in my daily tasks.
+Blend of Javascript, jQuery, AngularJS, BackboneJS, D3 and Jasmine arquitecture structures, modules, patterns and tricks that I use in my daily tasks.
 
-## Folders Description
+## Folders
 
-###angular
+###Angular
 Patterns for angular development
 
-###backbone
+###Backbone
 Patterns, tricks and best practices related with the usual components of backbone applications
 
-#canvas-pool
-Some old code related with canvas (To deprecate soon)
+*  Collections
+*  Entities
+*  Marionette
+*  Models
+*  Routers
+*  Structure
+*  Templates
+*  Views
 
-###d3
-Tricks and patterns of D3 development (To complete)
+###D3
+Tricks and patterns of D3 development
 
-###jasmine
+###Jasmine
 Tricks, cheatsheets and Backbone model and view test examples
 
-###javascript
+###Javascript
 Set of tricks, modules and extensions for Vanilla JavaScript based projects
 
-###jquery
+###Jquery
 Set of tricks, modules and best practices for jQuery based projects
 
-###jquery-mobile
-Set of tricks, modules and extensions for jQuery Mobile based projects
-
-###mobile-development
+###Mobile-development
 Tricks and patterns for mobile targeted development
 
-###performance-patterns
-Best practices for more performant jQuery and JavaScript
+###Performance-patterns
+Best practices for more performant JavaScript

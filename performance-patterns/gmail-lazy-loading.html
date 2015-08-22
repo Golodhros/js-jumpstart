@@ -5,9 +5,10 @@
 
 <script>
 function lazyLoad(){
-    var lazyElement = document.getElementById('lazy');
-    var lazyElementBody = lazyElement.innerHTML;
-    var jsCode = stripOutCommentBlock(lazyElementBody);
+    var lazyElement = document.getElementById('lazy'),
+        lazyElementBody = lazyElement.innerHTML,
+        jsCode = stripOutCommentBlock(lazyElementBody);
+
     eval(jsCode);
 }
 </script>

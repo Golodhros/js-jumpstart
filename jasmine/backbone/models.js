@@ -19,6 +19,16 @@ describe("Tests for a custom Backbone Model", function() {
         expect(monster.defaults.yearFounded).toBeDefined();
         expect(monster.defaults.isDepartmentStore).toBeDefined();
     });
+    // OR
+    var attributes = ['name', 'first_name'];
+
+    describe('Model Defaults', function() {
+        attributes.forEach(function(attribute) {
+            it('should have a default value for ' + attribute, function() {
+                expect(this.model.defaults[attribute]).toBeDefined({});
+            });
+        });
+    });
 
     // Test Model methods are defined
     it("can have a custom method called calculateAge", function() {
@@ -69,4 +79,5 @@ describe("Tests for a custom Backbone Model", function() {
         monster.triggerCustomEvent();
         expect(myObject.aFakeCallback).toHaveBeenCalled();
     });
+
 });
