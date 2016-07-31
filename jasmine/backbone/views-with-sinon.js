@@ -154,3 +154,22 @@ describe("TodoListView", function() {
     });
 
 });
+
+
+
+// Triggering key events
+// function triggerKeyUp() {
+//     var e = new $.Event('keyup');
+
+//     // Key 'Enter'
+//     e.keyCode = '65';
+//     $('.js-search-events').val('A').trigger(e);
+// }
+
+// function triggerEnter() {
+//     var e = new $.Event('keypress');
+
+//     // Character 'A'
+//     e.keyCode = '13';
+//     $('.js-search-events').val('A').trigger(e);
+// }
