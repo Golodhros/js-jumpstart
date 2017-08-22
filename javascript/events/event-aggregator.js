@@ -13,7 +13,9 @@ Event.prototype.addHandler = function(handler) {
     this._handlers.push(handler);
 };
 Event.prototype.removeHandler = function(handler) {
-    for (var i = 0; i < handlers.length; i++) {
+    var i = 0;
+
+    for (; i < handlers.length; i++) {
         if (this._handlers[i] == handler) {
             this._handlers.splice(i, 1);
             break;
