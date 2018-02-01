@@ -40,10 +40,10 @@ Best practices for more performant JavaScript
 ### React
 Best practices and snippets for React development
 
-###Redux
+### Redux
 Notes and snippets
 
-###Testing
+### Testing
 Patterns for testing, related to backbone code, Jasmine and test data generation
 
 
