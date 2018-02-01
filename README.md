@@ -1,8 +1,12 @@
-# JavaScript Jumpstart Recipes
+# Golodhros' JavaScript Jumpstart
 
-Blend of Javascript, jQuery, AngularJS, BackboneJS, D3 and Jasmine arquitecture structures, modules, patterns and tricks that I use in my daily tasks.
+> My JavaScript Jumpstart repository is a compendium of patterns, tips, tricks and snippets gathered through a number of years and dealing with JavaScript, JS Testing and libraries like D3, React, Backbone, jQuery, Jasmine, Sinon
+
+## Usage
+This are simple snippets for the most part. Just copy/paste them in your project and enjoy!
 
 ## Contents
+There is a mix of stuff in here:
 
 ### Backbone
 Patterns, tricks and best practices related with the usual components of backbone applications
@@ -41,3 +45,8 @@ Notes and snippets
 
 ###Testing
 Patterns for testing, related to backbone code, Jasmine and test data generation
+
+
+## Acknowledgements
+Most of this code is taken from books, blog posts and essays about this technologies.
+I am sorry if some refereces are missing, I wasn't sure I would ever share this!
