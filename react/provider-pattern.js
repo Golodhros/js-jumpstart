@@ -8,19 +8,11 @@ import PropTypes from "prop-types";
 
 // IMPORTANT: we need to define childContextTypes
 // to be able to access the context object in React
-const contextTypes = {
-  dagobah: PropTypes.shape({
-    loading: PropTypes.bool,
-    error: PropTypes.object,
-    planet: PropTypes.shape({
-      name: PropTypes.string,
-      climate: PropTypes.string,
-      terrain: PropTypes.string
-    })
-  })
+const contextTypes =
 };
 
 export class DagobahProvider extends React.Component {
+
   state = { loading: true };
 
   componentDidMount() {
@@ -32,7 +24,17 @@ export class DagobahProvider extends React.Component {
       );
   }
 
-  static childContextTypes = contextTypes;
+  static childContextTypes = {
+    dagobah: PropTypes.shape({
+      loading: PropTypes.bool,
+      error: PropTypes.object,
+      planet: PropTypes.shape({
+        name: PropTypes.string,
+        climate: PropTypes.string,
+        terrain: PropTypes.string
+      })
+    })
+  };
 
   getChildContext() {
     return { dagobah: this.state };
@@ -42,3 +44,73 @@ export class DagobahProvider extends React.Component {
     return this.props.children;
   }
 }
+
+
+// Another Example
+// From: https://medium.freecodecamp.org/evolving-patterns-in-react-116140e5fe8f
+// The top level component — called Provider — sets some values on the context.
+// The child components — called Consumers — will grab those values from the context.
+
+import React from 'react';
+import { render } from 'react-dom';
+import PropTypes from 'prop-types';
+
+class MousePositionProvider extends React.Component {
+  constructor( ) {
+    super();
+    this.state = { };
+    this.onMouseMove = this.onMouseMove.bind( this );
+  }
+
+  getChildContext() {
+    return {
+      posX: this.state.posX,
+      posY: this.state.posY
+    };
+  }
+
+  componentDidMount( ) {
+    window.addEventListener( "mousemove", this.onMouseMove );
+  }
+
+  onMouseMove( e ) {
+    this.setState({ posX: e.clientX, posY: e.clientY });
+  }
+
+  render( ) {
+    return this.props.children
+  }
+}
+
+MousePositionProvider.childContextTypes = {
+  posX: PropTypes.number,
+  posY: PropTypes.number
+};
+
+
+
+class MousePositionConsumer extends React.Component {
+  render( ) {
+    return (
+      <div>Your position is ( {this.context.posX},{this.context.posY} )</div>
+    )
+  }
+}
+
+MousePositionConsumer.contextTypes = {
+  posX: PropTypes.number,
+  posY: PropTypes.number
+};
+
+
+
+const App = () => (
+  <MousePositionProvider>
+    <div>
+      <MousePositionConsumer />
+      <MousePositionConsumer />
+    </div>
+  </MousePositionProvider>
+);
+
+render(<App />, document.getElementById('root'));

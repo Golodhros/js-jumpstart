@@ -34,8 +34,19 @@ const reducer = combineReducers({
 // Adding elements to arrays
 export const addTodo = (state = [], { type, todo }) => {
   switch (type) {
-    case 'addTodo':
+    case 'addTodoAtEnd':
       return [...state, todo];
+    case 'addTodoAtBeginning':
+      return [todo, ...state];
+    case 'addTodoInMiddle':
+      let middle = Math.floor(state.length/2);
+      return [                // array is new
+        ...state.slice(0, middle), // first X items unchanged
+        newItem,
+        ...state.slice(middle)     // last Y items unchanged
+    ];
+
+      return [todo, ...state];
     default:
       return state;
   }
@@ -75,3 +86,4 @@ export const removeTodo = (state = {}, { type, id }) => {
   }
 };
 
+// More on: https://redux.js.org/recipes/structuringreducers/immutableupdatepatterns

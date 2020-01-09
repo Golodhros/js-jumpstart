@@ -21,14 +21,14 @@
  * @param {Object} aNumbersSeq The array that must be sorted
  * @method ins_sort
  */
-var ins_sort = function (aNumbersSeq) {
-	var j 			= 1,
-		i 			= 0,
-		nLength  	= aNumbersSeq.length,
-		nKey 		= null;
+const ins_sort = function (aNumbersSeq) {
+	var j = 1,
+		i = 0,
+		nLength = aNumbersSeq.length,
+		nKey = null;
 
-	if(nLength){
-		for(;j<nLength;j=j+1) {
+	if(nLength) {
+		for(;j<nLength;j=j++) {
 			nKey = aNumbersSeq[j];
 			i = j-1;
 			while(i>=0 && aNumbersSeq[i]>nKey) {
@@ -47,17 +47,23 @@ var ins_sort = function (aNumbersSeq) {
  * @param {Object} arr
  * @method sort
  */
-function sort( arr ){
-        var start, max, min, i = 0, len = arr.length;
-        for ( ; i < len; i++ ){
-                for ( var j = i; j >= 0; j-- ){
-                        if ( arr[ j + 1 ] < arr[ j ] ){
-                                max = arr[ j ];
-                                min = arr[ j + 1 ];
-                                arr[ j ] = min;
-                                arr[ j + 1 ] = max
-                        }
-                }
+function sort( arr ) {
+    let start,
+        max,
+        min,
+        i = 0,
+        len = arr.length;
+
+    for( ; i < len; i++ ) {
+        for(var j = i; j >= 0; j-- ) {
+            if( arr[ j + 1 ] < arr[ j ] ){
+                max = arr[ j ];
+                min = arr[ j + 1 ];
+                arr[ j ] = min;
+                arr[ j + 1 ] = max
+            }
         }
-        return arr;
     }
+
+    return arr;
+}

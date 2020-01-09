@@ -158,3 +158,20 @@ function ready(cb) {
 //ready(function() {
 //// grab something from the DOM
 //});
+
+// Another version:
+// With jQuery
+$(document).ready(function() {
+  /* Do things after DOM has fully loaded */
+});
+
+// Without jQuery
+// Define a convenience method and use it
+var ready = (callback) => {
+  if (document.readyState != "loading") callback();
+  else document.addEventListener("DOMContentLoaded", callback);
+}
+
+ready(() => {
+  /* Do things after DOM has fully loaded */
+});

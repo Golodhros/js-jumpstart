@@ -46,6 +46,19 @@ console.log("a:", a, "b:", b, "c:", c, "d:", d);
 // => a: 1 b: 2 c: [ [ 3, 4 ], 5 ] d: 6
 
 
+// Head tails
+const [head, ...tail] = [1, 2, 3];
+// => head: 1 tail: [2, 3]
+
+
+// Last and Initial elements
+const [last, ...initial] = [1, 2, 3].reverse();
+// or, without mutation:
+const xs = [1, 2, 3];
+const [last, ...initial] = [...xs].reverse();
+// => last: 3 initial [1, 2]
+
+
 
 // === Objects
 
@@ -222,7 +235,6 @@ for (let { user, age = "DEFAULT AGE" } of users) {
 // => Name2 2
 // => Name2 DEFAULT AGE
 // => Name3 4
-
 
 
 // Regexp trick

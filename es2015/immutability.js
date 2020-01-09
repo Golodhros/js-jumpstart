@@ -30,3 +30,39 @@ console.log(foo.bar);
 // only use let if rebinding is needed
 // (var shouldn’t be used in ES6)
 
+
+// Immutable Operations
+
+// Array Operations
+const removeLastItem = (items) => {
+    return items.slice(0, -1);
+}
+
+const removeFirstItem = (items) => {
+    const [last, ...rest] = items;
+    return rest;
+}
+
+const removeItemById = (items, id) => items.filter(item => item.id !== id);
+
+
+// Object Operations
+const toggleTodo = (todo) => ({
+    ...todo,
+    completed: !todo.completed
+});
+
+const addTodo = (todos, todo) => ({
+    ...todos,
+    [todo.id]: todo
+});
+
+const removeTodo = (state = {}, { type, id }) => {
+  switch (type) {
+    case 'removeTodo':
+      const {[id]: remove, ...rest} = state;
+      return rest;
+    default:
+      return state;
+  }
+};

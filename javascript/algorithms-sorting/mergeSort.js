@@ -23,16 +23,16 @@
  * @param {Object} aNumbersSeq The array that must be sorted
  * @method merge_sort
  */
-var merge_sort = function (aNumbersSeq) {
+const merge_sort = function (aNumbersSeq) {
 
 	if (aNumbersSeq.length == 1) {
         return aNumbersSeq;
     }
 
-	var nLength  		= aNumbersSeq.length,
-		nMiddleIndex 	= Math.floor(nLength), // /2??
-		aLeft 			= aNumbersSeq.slice(0,nMiddleIndex),
-		aRight			= aNumbersSeq.slice(nMiddleIndex);
+	let nLength = aNumbersSeq.length,
+		nMiddleIndex = Math.floor(nLength), // /2??
+		aLeft = aNumbersSeq.slice(0,nMiddleIndex),
+		aRight = aNumbersSeq.slice(nMiddleIndex);
 
 	return merge(merge_sort(aLeft), merge_sort(aRight));
 };
@@ -43,10 +43,10 @@ var merge_sort = function (aNumbersSeq) {
  * @param {Object} aRight Right part of the array to sort
  * @method merge
  */
-var merge = function (aLeft, aRight) {
-	var aResult 		= [],
-		nLeftLength 	= aLeft.length,
-		nRightLength 	= aRight.length;
+const merge = function (aLeft, aRight) {
+	let aResult = [],
+		nLeftLength = aLeft.length,
+		nRightLength = aRight.length;
 
     while (nLeftLength > 0 && nRightLength > 0){
         if (aLeft[0] < aRight[0]){
