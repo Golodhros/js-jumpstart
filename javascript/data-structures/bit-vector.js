@@ -1,34 +1,43 @@
 // Source: http://the-coderok.azurewebsites.net/2015/09/22/Boolean-array-vs-Bit-vector-in-JavaScript/
 
-var bitVector = function(size){
-    this.store = [size/32+1];
-}
+class bitVector {
+    constructor(size) {
+        this.store = new Array[size/32+1];
+    }
 
-bitVector.prototype.setBit = function(bit, val){
-    var index = ~~(bit / 32);
-    var shift = ~~(bit % 32);
-    var mask = 1 << shift;
-    if (val){
-            this.store[index] = this.store[index] | mask;
-    } else {
+    setBit(bit, value) {
+        const index = ~~(bit / 32); // ~~ is a faster version of Math.floor
+        const shift = ~~(bit % 32);
+        const mask = 1 << shift;
+
+        if (value) {
+            this.store[index] = this.store[index] | mask; // sets to 1
+        } else {
             this.store[index] = this.store[index] & ~mask;
+        }
+    }
+
+    isSet(bit) {
+        const index = ~~(bit / 32);
+        const shift = ~~(bit % 32);
+        const mask = 1 << shift;
+
+        return (this.store[index] & mask) > 0;
     }
 }
-bitVector.prototype.isSet = function(bit){
-    var index = ~~(bit / 32);
-    var shift = ~~(bit % 32);
-    var mask = 1 << shift;
-    return (this.store[index] & mask) > 0;
-}
+
+
 
 // Using it
-var vector = new bitVector(totalSize);
-for(var i=0; i < totalSize; i++){
-        vector.setBit(i, i%2===0);
+let vector = new bitVector(totalSize);
+
+for(let i=0; i < totalSize; i++){
+    vector.setBit(i, i%2===0);
 }
-trueCount = 0;
-for(var i = 0; i<totalSize; i++){
-        if (vector.isSet(i)){
-                trueCount++;
-        }
+
+let trueCount = 0;
+for(let i = 0; i<totalSize; i++){
+    if (vector.isSet(i)){
+        trueCount++;
+    }
 }

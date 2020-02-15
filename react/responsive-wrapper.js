@@ -1,48 +1,40 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
 // Responsive chart wrapper
 // From https://medium.com/@caspg/responsive-chart-with-react-and-d3v4-afd717e57583
 
-export default (ChartComponent) => (
-    class ResponsiveChart extends Component {
-        constructor(props) {
-            super(props);
-
-            this.state = {
-                containerWidth: null,
-            };
-
-            this.fitParentContainer = this.fitParentContainer.bind(this);
-        }
+export default WrappedComponent =>
+    class ResponsiveComponent extends Component {
+        state = {
+            containerWidth: null
+        };
 
         componentDidMount() {
             this.fitParentContainer();
-            window.addEventListener('resize', this.fitParentContainer);
+            window.addEventListener("resize", this.fitParentContainer);
         }
 
         componentWillUnmount() {
-            window.removeEventListener('resize', this.fitParentContainer);
+            window.removeEventListener("resize", this.fitParentContainer);
         }
 
-        fitParentContainer() {
+        fitParentContainer = () => {
             const { containerWidth } = this.state;
-            const currentContainerWidth = this.chartContainer.getBoundingClientRect().width;
-
+            const currentContainerWidth = this.componentContainer.getBoundingClientRect()
+                .width;
             const shouldResize = containerWidth !== currentContainerWidth;
 
             if (shouldResize) {
                 this.setState({
-                    containerWidth: currentContainerWidth,
+                    containerWidth: currentContainerWidth
                 });
             }
-        }
+        };
 
         renderChart() {
             const parentWidth = this.props.width || this.state.containerWidth;
 
-            return (
-                <ChartComponent {...this.props} width={parentWidth} />
-            );
+            return <WrappedComponent {...this.props} width={parentWidth} />;
         }
 
         render() {
@@ -51,8 +43,8 @@ export default (ChartComponent) => (
 
             return (
                 <div
-                    ref={(el) => {
-                        this.chartContainer = el;
+                    ref={el => {
+                        this.componentContainer = el;
                     }}
                     className="Responsive-wrapper"
                 >
@@ -60,5 +52,4 @@ export default (ChartComponent) => (
                 </div>
             );
         }
-    }
-);
+    };

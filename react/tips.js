@@ -27,22 +27,3 @@ shouldComponentUpdate(nextProps, nextState) {
 this.setState((prevState) => {
     return {value: prevState.value + 1};
 });
-
-
-// componentWillReceiveProps
-
-// If you want to update the state in response to props changes, this is the method you need.
-// Compare this.props with nextProps and if there is a significant change, act on it.
-componentWillReceiveProps(nextProps){
-    if(this.props.foo !== nextProps.foo){
-        this.whenFooChanges();
-    }
-    if(this.props.bar !== nextProps.bar){
-        this.whenBarChanges();
-    }
-}
-
-// Note:
-// React may call componentWillReceiveProps even if the props have not changed,
-// so comparing this.props and nextProps is important.
-// componentWillReceiveProps is invoked only before a mounted component receives new props

@@ -9,22 +9,21 @@
 // if you use this HOC in two components being rendered on the same screen, it will fetch the data twice
 
 const withDagobah = PlanetViewComponent =>
-  class extends React.Component {
-    state = { loading: true };
+    class extends React.Component {
+        state = { loading: true };
 
-    componentDidMount() {
-      fetch("https://swapi.co/api/planets/5")
-        .then(res => res.json())
-        .then(
-          planet => this.setState({ loading: false, planet }),
-          error => this.setState({ loading: false, error })
-        );
-    }
+        componentDidMount() {
+            fetch("https://swapi.co/api/planets/5")
+                .then(res => res.json())
+                .then(
+                    planet => this.setState({ loading: false, planet }),
+                    error => this.setState({ loading: false, error })
+                );
+        }
 
-    render() {
-      return <PlanetViewComponent {...this.state} />;
-    }
-  };
+        render() {
+            return <PlanetViewComponent {...this.state} />;
+        }
+    };
 
 export default withDagobah(PlanetBranch);
-

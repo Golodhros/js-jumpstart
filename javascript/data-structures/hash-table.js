@@ -1,4 +1,4 @@
-// Source: https://github.com/trekhleb/javascript-algorithms/blob/master/src/data-structures/hash-table/HashTable.js
+// Source: https://github.com/trekhleb/javascript-algorithms/blob/master/src/data-structures/hash-table/HashTable.just
 
 import LinkedList from '../linked-list/LinkedList';
 

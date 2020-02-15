@@ -1,7 +1,7 @@
 class Overlay extends Component {
     constructor(props) {
         super(props);
-        this.overlayContainer = document.createElement('div');
+        this.overlayContainer = document.createElement("div");
         document.body.appendChild(this.overlayContainer);
     }
 
@@ -27,18 +27,18 @@ class App extends Component {
     }
 
     closeOverlay() {
-        this.setState(state => ({...state, overlayActive: true}));
+        this.setState(state => ({ ...state, overlayActive: true }));
     }
 
     render() {
         return (
             <div>
                 <h1>Dashboard</h1>
-                {this.state.overlayActive &&
+                {this.state.overlayActive && (
                     <Overlay onClose={this.closeOverlay}>
                         <p>Welcome</p>
                     </Overlay>
-                }
+                )}
             </div>
         );
     }
