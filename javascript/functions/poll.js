@@ -6,7 +6,7 @@ function poll(fn, timeout, interval) {
     var checkCondition = function(resolve, reject) {
         // If the condition is met, we're done!
         var result = fn();
-        if(result) {
+        if (result) {
             resolve(result);
         }
         // If the condition isn't met but the timeout hasn't elapsed, go again
@@ -15,7 +15,7 @@ function poll(fn, timeout, interval) {
         }
         // Didn't match and too much time, reject!
         else {
-            reject(new Error('timed out for ' + fn + ': ' + arguments));
+            reject(new Error("timed out for " + fn + ": " + arguments));
         }
     };
 
@@ -23,10 +23,16 @@ function poll(fn, timeout, interval) {
 }
 
 // Usage:  ensure element is visible
-poll(function() {
-    return document.getElementById('lightbox').offsetWidth > 0;
-}, 2000, 150).then(function() {
-    // Polling done, now do something else!
-}).catch(function() {
-    // Polling timed out, handle the error!
-});
+poll(
+    function() {
+        return document.getElementById("lightbox").offsetWidth > 0;
+    },
+    2000,
+    150
+)
+    .then(function() {
+        // Polling done, now do something else!
+    })
+    .catch(function() {
+        // Polling timed out, handle the error!
+    });

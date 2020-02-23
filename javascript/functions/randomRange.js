@@ -1,7 +1,12 @@
-// provide a random value between min and max.
-function rand(min, max, integer) {
-  var r = Math.random() * (max - min) + min;
-  return integer ? r|0 : r;
+/**
+ * Provides a random integer between min and max (max not included)
+ * @param  {Number} min Minimum boundary (included)
+ * @param  {Number} max Maximum boundary (not included)
+ * @return {Number}     Random generated number
+ */
+const random = (min, max) => {
+    return ~~(Math.random() * (max-min) + min);
 }
-console.log(rand(2,5)); // float random between 2 and 5 inclusive
-console.log(rand(1,100,true)); // integer random between 1 and 100
+
+// random(1, 500) => 182
+// random(1, 5) => 1 || 2 || 3 || 4

@@ -19,9 +19,9 @@
 /**
  * Proposed solution in js
  * @param {Object} aNumbersSeq The array that must be sorted
- * @method ins_sort
+ * @method insertionSort
  */
-const ins_sort = function (aNumbersSeq) {
+const insertionSort = function (aNumbersSeq) {
 	var j = 1,
 		i = 0,
 		nLength = aNumbersSeq.length,

@@ -21,9 +21,9 @@
  * Completely based on Nicholas Zakas solution in
  * http://www.nczonline.net/blog/2009/01/27/speed-up-your-javascript-part-3/
  * @param {Object} aNumbersSeq The array that must be sorted
- * @method merge_sort
+ * @method mergeSort
  */
-const merge_sort = function (aNumbersSeq) {
+const mergeSort = function (aNumbersSeq) {
 
 	if (aNumbersSeq.length == 1) {
         return aNumbersSeq;
@@ -34,11 +34,11 @@ const merge_sort = function (aNumbersSeq) {
 		aLeft = aNumbersSeq.slice(0,nMiddleIndex),
 		aRight = aNumbersSeq.slice(nMiddleIndex);
 
-	return merge(merge_sort(aLeft), merge_sort(aRight));
+	return merge(mergeSort(aLeft), mergeSort(aRight));
 };
 
 /**
- * Auxiliar method for merge_sort
+ * Auxiliar method for mergeSort
  * @param {Object} aLeft Left part of the array to sort
  * @param {Object} aRight Right part of the array to sort
  * @method merge
