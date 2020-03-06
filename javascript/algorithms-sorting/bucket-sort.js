@@ -44,11 +44,12 @@ const bucketSort = (list, bucketCount = 200) => {
     // refill the elements into the original list
     let idx = 0;
     for(let i = 0; i<buckets.length; i++) {
+        // select those non-empty buckets
         if (typeof buckets[i] !== "undefined"){
-            // select those non-empty buckets
+            // sort the elements in the bucket
             buckets[i] = quickSort(buckets[i]);  // use any sorting algorithm would be fine
 
-            // sort the elements in the bucket
+            // merge them into the result array
             for(let j = 0; j<buckets[i].length; j++){
                 list[idx++] = buckets[i][j]
             }
