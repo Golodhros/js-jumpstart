@@ -13,14 +13,13 @@ const binarySearchRecursive = (
     min = 0,
     max = array.length - 1
 ) => {
-    let med = min + Math.floor((max - min) / 2);
-
     if (min > max) {
         return false;
     }
+    let med = min + Math.floor((max - min) / 2);
 
     if (array[med] > value) {
-        return binarySearchRecursive(array, value, 0, med - 1);
+        return binarySearchRecursive(array, value, min, med - 1);
     } else if (array[med] < value) {
         return binarySearchRecursive(array, value, med + 1, max);
     } else {

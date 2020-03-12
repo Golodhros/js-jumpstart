@@ -12,11 +12,10 @@
 const buildStringHash = (hashMap, string) => {
     let sortedString = string.split('').sort().join('');
 
-    if (hashMap[sortedString]) {
-        hashMap[sortedString].push(string);
-    } else {
-        hashMap[sortedString] = [string];
+    if (!hashMap[sortedString]) {
+        hashMap[sortedString] = [];
     }
+    hashMap[sortedString].push(string);
 
     // Or
     // hashMap[sortedString] = hashMap[sortedString] || [];

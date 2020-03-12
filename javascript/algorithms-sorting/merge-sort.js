@@ -32,6 +32,5 @@ const mergeSort = (array) => {
     }
     let {leftPartition, rightPartition} = partitionArray(array);
 
-
     return merge(mergeSort(leftPartition), mergeSort(rightPartition));
 }
