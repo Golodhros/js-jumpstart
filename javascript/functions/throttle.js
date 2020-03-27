@@ -2,11 +2,11 @@
 function throttle(callback, limit) {
     let wait = false;
 
-    return function() {
+    return (...args) => {
         if (!wait) {
-            callback.apply(null, arguments);
+            callback.apply(null, args);
             wait = true;
-            setTimeout(function() {
+            setTimeout(() => {
                 wait = false;
             }, limit);
         }

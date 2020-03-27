@@ -22,46 +22,45 @@ sub.release(); // `sub` is the reference returned by `subscribe` above
 
 */
 
-
 class Emitter {
+    constructor() {
+        this.handlers = [];
 
-  constructor() {
-    this.handlers = [];
-
-    // this.handlers = {
-    //   [eventName]: []
-    // };
-  }
-
-  //   O(1)
-  subscribe(eventName, callback) {
-    // Check for legal eventNames and callback
-    this.handlers.push({
-      event: eventName,
-      callback,
-    });
-
-    return {release: this._release.bind(this, eventName, callback)};
-  }
-
-  // O(n) with n = number of handlers added
-  emit(eventName, ...args) {
-    // Check for legal eventNames and callback
-    let handlers = this.handlers.filter((handler) => handler.event === eventName);
-
-    if(handlers.length) {
-      handlers.forEach((handler) => {
-        handler.callback.apply(null, args);
-      });
+        // this.handlers = {
+        //   [eventName]: []
+        // };
     }
-  }
 
-  //   O(n) with n = number of handlers added
-  _release(eventName, cb) {
-    // Check for legal eventNames and callback
-    this.handlers = this.handlers.filter((handler) => {
-        return ((handler.event !== eventName) && (handler.callback !== cb))
-    });
-  }
+    //   O(1)
+    subscribe(eventName, callback) {
+        // Check for legal eventNames and callback
+        this.handlers.push({
+            event: eventName,
+            callback
+        });
 
+        return { release: this._release.bind(this, eventName, callback) };
+    }
+
+    // O(n) with n = number of handlers added
+    emit(eventName, ...args) {
+        // Check for legal eventNames and callback
+        let handlers = this.handlers.filter(
+            handler => handler.event === eventName
+        );
+
+        if (handlers.length) {
+            handlers.forEach(handler => {
+                handler.callback.apply(null, args);
+            });
+        }
+    }
+
+    //   O(n) with n = number of handlers added
+    _release(eventName, cb) {
+        // Check for legal eventNames and callback
+        this.handlers = this.handlers.filter(handler => {
+            return handler.event !== eventName && handler.callback !== cb;
+        });
+    }
 }

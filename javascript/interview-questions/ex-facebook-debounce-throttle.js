@@ -18,28 +18,28 @@ input.addEventListener('keydown', debounce(search, 100));
 // Debounce function
 // Wait the delay until we fire it again
 const debounce = (cb, delay) => {
-  let timeoutId;
+    let timeoutId;
 
-  return (...args) => {
-      clearTimeouts(timeoutId);
+    return (...args) => {
+        clearTimeout(timeoutId);
 
-      timeoutId = setTimeout(() => {
-        cb.apply(this, args);
-      }, delay);
-  };
+        timeoutId = setTimeout(() => {
+            cb.apply(this, args);
+        }, delay);
+    };
 };
 
 const throttle = (cb, delay) => {
-  let isRunning = true;
+    let isRunning = true;
 
-  return () => {
-      if(isRunning) {
-        setTimeout(() => {
-          cb();
-          isRunning = true;
-        }, delay);
+    return (...args) => {
+        if (isRunning) {
+            setTimeout(() => {
+                cb.apply(this, args);
+                isRunning = true;
+            }, delay);
 
-        isRunning = false;
-      }
-  };
+            isRunning = false;
+        }
+    };
 };
