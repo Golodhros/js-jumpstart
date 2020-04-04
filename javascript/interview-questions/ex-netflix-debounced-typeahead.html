@@ -1,0 +1,113 @@
+<html>
+  <head>
+    <style>
+      body {
+        background-color: #1d2126;
+        color: white;
+      }
+      .is-red {
+        border: 2px solid red;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Hello, World</h1>
+    <div>
+      <label>Typeahead
+        <input id="typeahead" type="text" />
+        <div class="recommendation-container"></div>
+      </label>
+    </div>
+  </body>
+</html>
+
+<script>
+
+// Debounce
+// Typeahead
+
+// Requirements
+// - pass callback
+// - pass delay
+// - return another function
+
+// -----*----*---*--------delay-----&--
+
+const debounce = (callback, delay) => {
+  let timeoutId;
+
+  return (...args) => {
+    clearTimeout(timeoutId);
+
+    timeoutId = setTimeout(() => {
+      timeoutId = null;
+      callback.apply(this, args);
+    }, delay);
+  };
+};
+
+
+const dummyFunction = (input) => {
+  console.log('dummy!', input);
+};
+
+const debouncedDummy = debounce(dummyFunction, 1000);
+
+
+debouncedDummy(1);
+debouncedDummy(2);
+debouncedDummy(3);
+
+// Typeahead
+// - threshold for # letters
+// - finish writing -> debounce
+// - compare recommendations with current values
+
+const DELAY = 200;
+const dummyResponse = {
+  data: ['marcos', 'jon', 'chan'],
+};
+
+const responseFunction = () => {
+  return new Promise((resolve) => {
+    resolve(dummyResponse);
+  });
+};`
+
+const renderRecommendationList = (recommendationsArray) => {
+  const container = document.querySelector('.recommendation-container');
+  const list = document.createElement('ul');
+
+  recommendationsArray.forEach((recommendation) => {
+    const listItem = document.createElement('li');
+    listItem.innerHTML = recommendation;
+    list.append(listItem);
+  });
+  container.append(list);
+};
+
+const handleResponse = (originalQuery, {data}) => {
+  renderRecommendationList(data);
+}
+
+function handleInputChange(e) {
+  const field = document.querySelector('#typeahead');
+
+  field.classList.add('is-red');
+
+  // window.fetch(URL)
+  //     .then((respose) => response.json())
+  responseFunction()
+      .then(handleResponse.bind(this, e.target.value));
+
+  console.log('value', e.target.value);
+};
+const input = document.querySelector('#typeahead');
+
+input.addEventListener('keydown', debounce(handleInputChange, 2000));
+
+
+</script>
+
+
+
