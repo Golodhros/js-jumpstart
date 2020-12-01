@@ -1,6 +1,12 @@
 const track = ({type, payload}, state) => {
     // analytics tracking api logic goes here
     console.log(`Tracking [${type}]:`, payload);
+
+    // GA Tracking
+    // gaTrackEvent({
+    //     action: type,
+    //     label: userType + tags,
+    // })
 };
 
 const analyticsMiddleware = (handler) => ({ getState }) => next => action => {
