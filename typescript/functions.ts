@@ -32,7 +32,7 @@ function log(message: string, userId?: string) {
     console.log(time, message, userId || "Not signed in");
 }
 // Default parameters
-function log(firstName: string, lastName = "Smith") {
+function buildName(firstName: string, lastName = "Smith") {
   return firstName + " " + lastName;
 }
 

@@ -164,7 +164,7 @@ it('takes users to the announcements page', () => {
 
 
 
-// Generated Tests
+// Generated/Parametrized Tests
 describe('todo list', () => {
 
     const testFilteredTodos = (filter, todos) => {
@@ -224,3 +224,70 @@ test('new item is added to the UI when the form is successfully submitted', asyn
     const actual = component.find('[data-testid="adder-items"]').length;
     expect(actual).toEqual(expected);
 });
+
+
+
+// Another option for forcing updates:
+wrapper.instance().forceUpdate();
+
+import { act } from 'react-dom/test-utils';
+
+
+describe('testing something with timers involved', () => {
+    beforeEach(() => {
+        jest.useFakeTimers();
+    });
+
+    afterEach(() => {
+        jest.useRealTimers();
+    });
+
+    it('should filter options', async () => {
+        const { wrapper } = setup(testProps);
+        const expected = 2;
+
+        await act(async () => {
+            clickOnPopoverButton(wrapper);
+            clickOnClearButton(wrapper);
+            wrapper
+                .find('input.dpl-drop-down-search-input')
+                .simulate('change', {
+                    target: { value: 'hey' },
+                });
+            jest.runAllTimers();
+        });
+
+        wrapper.update();
+        const actual = wrapper.find(
+            'div.dpl-drop-down-search-option-item'
+        ).length;
+
+        expect(actual).toEqual(expected);
+    });
+
+    it('Another option with setImmediate and done', (done) => {
+        const { wrapper } = setup(testProps);
+        const expected = 2;
+
+        clickOnPopoverButton(wrapper);
+        clickOnClearButton(wrapper);
+        wrapper
+            .find('input.dpl-drop-down-search-input')
+            .simulate('change', {
+                target: { value: 'hey' },
+            });
+
+        setImmediate(() => {
+            console.log(wrapper.debug());
+
+            const actual = wrapper.find(
+                'div.dpl-drop-down-search-option-item'
+            ).length;
+            expect(actual).toEqual(expected);
+
+            // have to call `done` here to let Jest know the test is done
+            done();
+        });
+    });
+})
+

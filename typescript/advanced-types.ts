@@ -9,15 +9,6 @@ type CatAndDog = Cat & Dog;
 let someValue: any = "this is a string”;
 let strLength: number = (someValue as string).length;
 
-// Type Guards
-function isFish(pet: Fish | Bird): pet is Fish {
-    return (pet as Fish).swim !== undefined;
-}
-
-// Using typeof
-if (typeof padding === "string") {
-    return padding + value;
-}
 
 // Type Guards
 function isFish(pet: Fish | Bird): pet is Fish {
@@ -45,7 +36,6 @@ if (padder instanceof SpaceRepeatingPadder) {
 if (padder instanceof StringPadder) {
     padder; // type narrowed to 'StringPadder'
 }
-
 
 
 // Index Types
@@ -78,6 +68,11 @@ let makeAndModel: string[] = pluck(taxi, ['manufacturer', 'model']);
 // array of a union type: (string | number)[]
 let modelYear = pluck(taxi, ['model', 'year'])
 
+// A simpler example
+function getProperty<O extends object, K extends keyof O>(o: O, k: K): O[K] {
+    return o[k];
+}
+
 
 // Mapped Types
 interface PersonPartial {
@@ -108,3 +103,14 @@ type MutuallyExclusive<T, U> = (T & Not<U>) | (U & Not<T>);
 // Example
 type ComponentProps = ComponentPropsBase &
 MutuallyExclusive<OneProp, OtherProp>
+
+
+
+
+// Type predicate
+function notEmpty<TValue>(value: TValue | null | undefined): value is TValue {
+    return value !== null && value !== undefined;
+}
+
+const array: (string | null)[] = ['foo', 'bar', null, 'zoo', null];
+const filteredArray: string[] = array.filter(notEmpty);

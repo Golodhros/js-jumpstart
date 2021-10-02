@@ -34,6 +34,13 @@ const SERVICES: Record<string, string> = {
     inStore: "in-store pickup",
 }
 
+type Weekday = "Mon" | "Tue" | "Wed" | "Thu" | "Fri";
+type Day = Weekday | "Sat" | "Sun";
+
+let nextDay: Record<Weekday, Day> = {
+    Mon: "Tue",
+};
+
 // Pick<Type, Keys>
 interface Todo {
     title: string;
