@@ -291,3 +291,87 @@ describe('testing something with timers involved', () => {
     });
 })
 
+
+// Testing Custom Hooks
+import { act } from 'react-dom/test-utils'; // ES6
+import { mount } from 'enzyme';
+import { useIdGenerator } from 'hooks/useIdGenerator';
+
+export const setupReactHook = () => {
+    // @ts-ignore
+    const Component: React.FC = ({ children }) => children(useIdGenerator());
+    const hook: Record<string, any> = {};
+    let wrapper;
+
+    act(() => {
+        wrapper = mount(
+            <Component>
+                {(value: number) => {
+                    Object.assign(hook, { value });
+
+                    return null;
+                }}
+            </Component>,
+        );
+    });
+
+    return { wrapper, hook };
+};
+
+describe('useIdGenerator', () => {
+    describe('render', () => {
+        it('renders without issues', () => {
+            expect(() => {
+                setupReactHook();
+            }).not.toThrow();
+        });
+
+        it('gives a number', () => {
+            const { hook } = setupReactHook();
+            const expected = 2;
+            const actual = hook.value;
+
+            expect(actual).toEqual(expected);
+        });
+
+        describe('when calling twice', () => {
+            it('gives consecutive numbers', () => {
+                const { hook } = setupReactHook();
+                const firstExpected = 3;
+                const firstActual = hook.value;
+
+                expect(firstActual).toEqual(firstExpected);
+
+                const { hook: hookBis } = setupReactHook();
+                const secondExpected = firstExpected + 1;
+                const secondActual = hookBis.value;
+
+                expect(secondActual).toEqual(secondExpected);
+            });
+        });
+    });
+});
+
+
+
+// Testing focus with Refs
+describe('when using refs', () => {
+    it('renders a focused day', () => {
+        const container = document.createElement('div');
+        container.id = 'container';
+        document.body.appendChild(container);
+
+        const { wrapper } = setup(
+            { isFocused: true },
+            {
+                attachTo: document.querySelector('#container'),
+            },
+        );
+
+        const expected = 'day-button-enabled';
+        const focusedElem = document.activeElement;
+        const actual = focusedElem instanceof HTMLElement ? focusedElem?.dataset?.testid : null;
+
+        expect(actual).toEqual(expected);
+    });
+});

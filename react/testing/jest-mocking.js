@@ -29,7 +29,6 @@ jest.mock('@lyft/service-plugin-tracker', () => ({
 const actual = (Track.send as jest.Mock).mock.calls[0][0];
 
 
-
 // Variable implementation by tests
 jest.mock("next/router");
 
@@ -42,4 +41,15 @@ beforeEach(() => {
         },
         asPath: '',
     }));
+});
+
+// Mocking part of a module
+jest.mock('utils', () => {
+    const originalUtils = jest.requireActual('utils');
+
+    return {
+        __esModule: true,
+        ...originalUtils,
+        updateRouterQueryWith: jest.fn(),
+    };
 });

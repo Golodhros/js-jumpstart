@@ -38,3 +38,61 @@ useEffect(() => {
 useEffect(() => {
     document.title = `You clicked ${count} times`;
 }, []);
+
+// Fetching data with useEffect
+// Also, avoids setting state on unmounted components
+const useDataApi = (initialUrl, initialData) => {
+    const [url, setUrl] = useState(initialUrl);
+
+    const [state, dispatch] = useReducer(dataFetchReducer, {
+        isLoading: false,
+        isError: false,
+        data: initialData,
+    });
+
+    useEffect(() => {
+        let didCancel = false;
+
+        const fetchData = async () => {
+            dispatch({ type: "FETCH_INIT" });
+
+            try {
+                const result = await axios(url);
+
+                if (!didCancel) {
+                    dispatch({ type: "FETCH_SUCCESS", payload: result.data });
+                }
+            } catch (error) {
+                if (!didCancel) {
+                    dispatch({ type: "FETCH_FAILURE" });
+                }
+            }
+        };
+
+        fetchData();
+
+        return () => {
+            didCancel = true;
+        };
+    }, [url]);
+
+    return [state, setUrl];
+};
+
+// Execute on mount, only once
+const executedRef = useRef(false);
+
+useEffect(
+    () => {
+        if (executedRef.current) {
+            return;
+        }
+
+        doSomething();
+
+        executedRef.current = true;
+    },
+    [
+        /*...*/
+    ]
+);
