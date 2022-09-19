@@ -114,3 +114,51 @@ function notEmpty<TValue>(value: TValue | null | undefined): value is TValue {
 
 const array: (string | null)[] = ['foo', 'bar', null, 'zoo', null];
 const filteredArray: string[] = array.filter(notEmpty);
+
+
+
+// Disjoint Unions
+// Ref: https://onesignal.com/blog/effective-typescript-for-react-applications/
+
+type ButtonKind = "primary" | "secondary";
+
+// Build separate interfaces for Primary & Secondary buttons
+interface PrimaryButton {
+  kind: "primary";
+  specialPrimaryMethod: () => void;
+}
+
+interface SecondaryButton {
+  kind: "secondary";
+}
+
+// Create a disjoint union
+type Button = PrimaryButton | SecondaryButton;
+
+// Add built-in HTML props to the disjoin union
+type Props = React.ComponentPropsWithoutRef<"button"> & Button;
+
+// You can no longer destructure props since specialPrimaryMethod
+// doesn't always exist on the object.
+function Button(props: Props) {
+  const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    if (props.kind === "primary") {
+      // No extra if check needed!
+      props.specialPrimaryMethod();
+    } else {
+      props.onClick?.(e);
+    }
+  };
+
+  return <button onClick={handleClick}>{props.children}</button>;
+}
+
+// USE:
+// All good!
+<Button kind="primary" specialPrimaryMethod={() => {}}>foo</Button>
+
+// Error: Property 'specialPrimaryMethod' is missing
+<Button kind="primary">click me!</Button>
+
+// Error: Type '{ ... specialPrimaryMethod: () => void; }' is not assignable
+<Button kind="secondary" specialPrimaryMethod={() => {}}>click me!</Button>
