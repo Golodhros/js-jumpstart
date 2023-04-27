@@ -6,40 +6,40 @@
  * you or someone else has created. You can create public and private methods within that module.
  *
  * Reference: http://www.adequatelygood.com/2010/3/JavaScript-Module-Pattern-In-Depth
+ * https://learning.oreilly.com/library/view/javascript-patterns/9781449399115/ch05.html#:-:text=Module%20Pattern
  */
 var dataContainer = (function () {
-  var accIdx = null;
+    var accIdx = null;
 
-  return {
-	  getAccIdx: function() {
-		  return accIdx;
-	  },
-	  setAccIdx: function(id) {
-		  accIdx = id;
-		  return false;
-	  }
-  };
+    return {
+        getAccIdx: function () {
+            return accIdx;
+        },
+        setAccIdx: function (id) {
+            accIdx = id;
+            return false;
+        },
+    };
 })();
 
-dataContainer.setAccIdx('4');
+dataContainer.setAccIdx("4");
 var x = dataContainer.getAccIdx(); //x = 4
 
 /**
  * Modified Module Pattern
  */
 var dataContainer = {};
-(function() {
-	var accIdx = null;
+(function () {
+    var accIdx = null;
 
-	this.getAccIdx = function() {
-		return accIdx;
-	};
-	this.setAccIdx = function(id) {
-		accIdx = id;
-		return false;
-	};
+    this.getAccIdx = function () {
+        return accIdx;
+    };
+    this.setAccIdx = function (id) {
+        accIdx = id;
+        return false;
+    };
+}.apply(dataContainer));
 
-}).apply(dataContainer);
-
-dataContainer.setAccIdx('4');
+dataContainer.setAccIdx("4");
 var x = dataContainer.getAccIdx(); //x = 4

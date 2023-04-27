@@ -111,6 +111,42 @@ it("should change the selected option", () => {
     expect(actual).toBe(expected);
 });
 
+// Input testing
+// Value is set
+describe('when a prefilled value is passed', () => {
+    it('should render it in the input', () => {
+        const value = 'testValue';
+        const expected = value;
+
+        setup({ value });
+        const actual = (screen.getByRole('textbox') as HTMLInputElement).value;
+
+        expect(actual).toBe(expected);
+    });
+});
+
+// Value changed
+describe('lifetime', () => {
+    describe('when value changes', () => {
+        it('should call the onChange handler', async () => {
+            const onChangeSpy = jest.fn();
+            const value = 'testValue';
+            const expected = 1;
+
+            const { user } = setup({ onChange: onChangeSpy });
+            const input = screen.getByRole('textbox');
+
+            user.type(input, value);
+
+            await waitFor(() => {
+                const actual = (onChangeSpy as jest.Mock).mock.calls.length;
+
+                expect(actual).toBe(expected);
+            });
+        });
+    });
+});
+
 // Custom hooks testing
 // Ref: https://react-hooks-testing-library.com/
 import React, { useState, useCallback } from "react";

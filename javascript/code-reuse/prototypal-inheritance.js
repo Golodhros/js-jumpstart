@@ -7,8 +7,9 @@
  *
  * Reference:   http://javascript.crockford.com/prototypal.html
  * 				Reference: Javascript Patterns by Stoyan Stefanov, pg 131
+ * https://learning.oreilly.com/library/view/javascript-patterns/9781449399115/ch06.html#:-:text=Prototypal%20Inheritance
  */
-if (typeof Object.create !== 'function') {
+if (typeof Object.create !== "function") {
     Object.create = function (o) {
         function F() {}
         F.prototype = o;
@@ -20,7 +21,7 @@ if (typeof Object.create !== 'function') {
 // Example
 // object to inherit from
 var parent = {
-	name: "Papa"
+    name: "Papa",
 };
 // the new object
 var child = object(parent);
