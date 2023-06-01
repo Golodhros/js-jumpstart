@@ -1,5 +1,5 @@
 // The naive way to check is to iterate from 2 through n-1, checking for divisibility on each iteration:
-const primeNaive = n => {
+const primeNaive = (n) => {
     if (n < 2) {
         return false;
     }
@@ -12,7 +12,8 @@ const primeNaive = n => {
 };
 
 // A small but important improvement is to iterate only up through the square root of n:
-const primeBetter = n => {
+// If n is divisible by a number greater than its square root then it's divisible by something smaller than it.
+const primeBetter = (n) => {
     if (n < 2) {
         return false;
     }
@@ -42,7 +43,7 @@ const getNextPrime = (flags, prime) => {
     return next;
 };
 
-const sieveOfEratosthenes = max => {
+const sieveOfEratosthenes = (max) => {
     let flags = new Array(max + 1).fill(true);
     let count = 0;
 
@@ -57,6 +58,7 @@ const sieveOfEratosthenes = max => {
         prime = getNextPrime(flags, prime);
     }
 
-    return flags.map((item, index) => item ? index : null)
-            .filter((item) => !!item);
+    return flags
+        .map((item, index) => (item ? index : null))
+        .filter((item) => !!item);
 };
