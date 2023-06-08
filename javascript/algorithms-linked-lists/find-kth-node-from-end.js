@@ -121,7 +121,7 @@ class LinkedList {
 
     findKthFromEnd(k) {
         if (!this.head) {
-            return false;
+            return null;
         }
         if (k === 0) {
             return this.tail;

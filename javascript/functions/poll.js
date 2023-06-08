@@ -1,11 +1,10 @@
 // The polling function
-function poll(fn, timeout, interval) {
-    var endTime = Number(new Date()) + (timeout || 2000);
-    interval = interval || 100;
+function poll(fn, timeout, interval = 100) {
+    let endTime = Number(new Date()) + (timeout || 2000);
 
-    var checkCondition = function(resolve, reject) {
+    const checkCondition = function (resolve, reject) {
         // If the condition is met, we're done!
-        var result = fn();
+        const result = fn();
         if (result) {
             resolve(result);
         }
@@ -24,15 +23,15 @@ function poll(fn, timeout, interval) {
 
 // Usage:  ensure element is visible
 poll(
-    function() {
+    function () {
         return document.getElementById("lightbox").offsetWidth > 0;
     },
     2000,
     150
 )
-    .then(function() {
+    .then(function () {
         // Polling done, now do something else!
     })
-    .catch(function() {
+    .catch(function () {
         // Polling timed out, handle the error!
     });

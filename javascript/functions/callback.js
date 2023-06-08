@@ -8,30 +8,29 @@
  */
 
 // refactored findNodes() to accept a callback
-var findNodes = function (callback) {
-	var i = 100000,
-	nodes = [],
-	found;
+const findNodes = function (callback) {
+    let i = 100000;
+    let nodes = [];
+    let found;
 
-	// check if callback is callable
-	if (typeof callback !== "function") {
-		callback = false;
-	}
-	while (i) {
-		i -= 1;
-		// complex logic here...
-		// now callback:
-		if (callback) {
-			callback(found);
-		}
-		nodes.push(found);
-	}
-	return nodes;
-}
+    // check if callback is callable
+    if (typeof callback !== "function") {
+        callback = false;
+    }
+    while (i) {
+        i -= 1;
+        // complex logic here...
+        // now callback:
+        callback?.(found);
+        nodes.push(found);
+    }
 
-//a callback function
-var hide = function (node) {
-	node.style.display = "none";
+    return nodes;
+};
+
+// a callback function
+const hide = function (node) {
+    node.style.display = "none";
 };
 
 // find the nodes and hide them as you go

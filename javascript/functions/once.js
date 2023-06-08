@@ -3,10 +3,10 @@
 // similar to the way you'd use an onload event. This code provides you said
 // functionality:
 function once(fn, context) {
-    var result;
+    let result;
 
-    return function() {
-        if(fn) {
+    return function () {
+        if (fn) {
             result = fn.apply(context || this, arguments);
             fn = null;
         }
@@ -16,8 +16,8 @@ function once(fn, context) {
 }
 
 // Usage
-var canOnlyFireOnce = once(function() {
-    console.log('Fired!');
+var canOnlyFireOnce = once(function () {
+    console.log("Fired!");
 });
 
 canOnlyFireOnce(); // "Fired!"
