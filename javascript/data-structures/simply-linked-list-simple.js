@@ -22,6 +22,7 @@ class LinkedList {
         return this.head;
     }
 
+    // O(1)
     append(value) {
         const newNode = new Node(value);
 
@@ -34,15 +35,71 @@ class LinkedList {
         return this.head;
     }
 
+    // O(1)
+    // unshift
     prepend(value) {
-        this.head = new Node(value, this.head);
+        const newNode = new Node(value);
+
+        if (!this.head) {
+            this.head = newNode;
+            this.tail = newNode;
+        } else {
+            newNode.next = this.head;
+            this.head = newNode;
+        }
+
+        return this.head;
+    }
+
+    // O(n)
+    pop() {
+        if (!this.head) {
+            throw new Errors("Cannot remove from empty list!");
+        }
+
+        let current = this.head;
+        let prev = null;
+        while (current.next) {
+            current = current.next;
+            prev = current;
+        }
+        this.tail = prev;
+        this.tail.next = null;
+
+        // Empty list
+        if (this.tail === null) {
+            this.head === null;
+        }
+
+        return this.head;
+    }
+
+    // O(1)
+    shift() {
+        if (!this.head) {
+            throw new Errors("Cannot remove from empty list!");
+        }
+
+        const tmp = this.head;
+        this.head = tmp.next;
+        tmp.next = null;
+
+        if (this.head === null) {
+            this.tail = null;
+        }
+
+        return this.head;
     }
 
     getFirst() {
         return this.head;
     }
 
+    // O(n)
     get(index) {
+        if (index < 0) {
+            throw new Error("index needs to be positive");
+        }
         let current = this.head;
         let count = 0;
 
@@ -70,6 +127,36 @@ class LinkedList {
 
     getRecursive(index) {
         return this._get(this.head, index);
+    }
+
+    // O(n)
+    set(index, value) {
+        let itemAtIndex = this.get(index);
+
+        if (itemAtIndex) {
+            itemAtIndex.value = value;
+            return true;
+        }
+
+        return false;
+    }
+
+    // O(n)
+    insert(index, value) {
+        if (index < 0) {
+            throw new Error("index needs to be positive");
+        }
+
+        if (index === 0) {
+            return this.prepend(value);
+        }
+
+        const newNode = new Node(value);
+        const prev = this.get(index - 1);
+        newNode.next = prev.next;
+        prev.next = newNode;
+
+        return true;
     }
 
     reverse() {
