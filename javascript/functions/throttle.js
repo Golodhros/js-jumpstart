@@ -1,5 +1,21 @@
-// Throttling is a technique used to limit the number of times a function is called over a certain period of time.
-// This can be useful when dealing with events that are triggered frequently, such as scrolling or resizing the window.
+/*
+Throttling is a technique used to limit the number of times a function is called over
+a certain period of time. This can be useful when dealing with events that are triggered
+frequently, such as scrolling or resizing the window.
+
+container.addEventListener('resize', search);
+resize      | | | | |
+time     ---------------->
+search      | | | | |
+
+container.addEventListener('resize', throttle(search, 100));
+resize      | | | | |
+time     ---------------->
+search      |    |
+            |100||100|
+
+*/
+
 function throttle(fn, delay) {
     let wait = false;
 

@@ -1,3 +1,5 @@
+// Ref: https://ivov.dev/notes/revisiting-data-structures-in-javascript
+
 class Node {
     constructor(value) {
         this.value = value;
@@ -48,19 +50,58 @@ class BinarySearchTree {
         }
     }
 
-    traverse(root, node) {
-        // if (!root) {
-        //     return;
-        // }
-        // // Leaf node
-        // if (!root.left && !root.right) {
-        //     if (root.value > node.value) {
-        //         root.right = node;
-        //     } else {
-        //         root.left = node;
-        //     }
-        //     return;
-        // }
+    DFSTraversal(root, fn) {
+        if (!this.root) {
+            throw new Error("Can't traverse an empty BST!");
+        }
+
+        let stack = [root];
+
+        while (stack.length) {
+            const current = stack.pop();
+            // Visit the node
+            fn(current);
+
+            // Careful, this order matters
+            if (current.right) {
+                stack.push(current.right);
+            }
+            if (current.left) {
+                stack.push(current.left);
+            }
+        }
+
+        return this;
+    }
+
+    DFSRecursive(root, fn) {
+        if (root === null) {
+            return;
+        }
+        // Process node
+        fn(root);
+
+        // Recurse
+        this.DFSRecursive(root.left, fn);
+        this.DFSRecursive(root.right, fn);
+    }
+
+    BFSTraversal(root, fn) {
+        const queue = [root];
+
+        while (queue.length) {
+            const current = queue.shift();
+
+            fn(current);
+            if (current.left) {
+                queue.push(current.left);
+            }
+            if (current.right) {
+                queue.push(current.right);
+            }
+        }
+
+        return this;
     }
 
     contains(value) {
@@ -87,19 +128,38 @@ class BinarySearchTree {
         console.dir(this.root);
     }
 }
-/**
-     5
-   2   6
- 1   3   7
-*/
 
 const BST = new BinarySearchTree();
 BST.insert(5);
 BST.insert(3);
-BST.insert(4);
+BST.insert(1);
 BST.insert(2);
 BST.insert(6);
+BST.insert(7);
 BST.print();
+
+/**
+     5
+    / \
+   2   6
+  / \   \
+ 1   3   7
+*/
 
 BST.contains(2);
 BST.contains(7);
+
+// console.log("DFSTraversal");
+// BST.DFSTraversal(BST.root, (node) => {
+//     console.log("Value", node.value);
+// });
+
+// console.log("DFSRecursive");
+// BST.DFSRecursive(BST.root, (node) => {
+//     console.log("Value", node.value);
+// });
+
+console.log("BFSTraversal");
+BST.BFSTraversal(BST.root, (node) => {
+    console.log("Value", node.value);
+});

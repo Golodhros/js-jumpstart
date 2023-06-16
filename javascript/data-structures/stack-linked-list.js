@@ -9,6 +9,8 @@
  * shift() and unshift() in a singly linked list become push() and pop() in a stack.
  * And instead of head and tail pointers from the singly linked list, we only keep
  * a top pointer for the stack.
+ *
+ * Ref: https://ivov.dev/notes/revisiting-data-structures-in-javascript
  */
 class Node {
     constructor(value) {

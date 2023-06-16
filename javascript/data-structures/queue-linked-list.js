@@ -7,6 +7,8 @@
  *
  * With a singly linked list, we should enqueue from the end and dequeue from the
  * start of a the list - both O(1).
+ *
+ * Ref: https://ivov.dev/notes/revisiting-data-structures-in-javascript
  */
 
 class Node {

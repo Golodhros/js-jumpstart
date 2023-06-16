@@ -25,10 +25,11 @@ const setup = (propOverrides?: Partial<LineChartProps>) => {
     return { props, container, user };
 };
 
+
 // Async testing
 it("should update the text", async () => {
     const button = screen.getByRole("button", { name: "Click Me" });
-    fireEvent.click(button);
+    await userEvent.click(button);
 
     const text = await screen.findByText("Clicked once");
 });
@@ -48,6 +49,8 @@ afterEach(() => {
     jest.runOnlyPendingTimers();
     jest.useRealTimers();
 });
+
+
 
 // Focus Testing
 it("compares with the currently active element", () => {
@@ -76,6 +79,9 @@ test("uses .toHaveFocus() to check", () => {
     const nameInput = screen.getByLabelText("Name");
     expect(nameInput).toHaveFocus();
 });
+
+
+
 
 // Selectbox testing
 it("should correctly set the default option", () => {
@@ -110,6 +116,8 @@ it("should change the selected option", () => {
 
     expect(actual).toBe(expected);
 });
+
+
 
 // Input testing
 // Value is set
@@ -147,6 +155,7 @@ describe('lifetime', () => {
     });
 });
 
+
 // Custom hooks testing
 // Ref: https://react-hooks-testing-library.com/
 import React, { useState, useCallback } from "react";
@@ -169,6 +178,8 @@ it("counter increments with react hooks testing library", () => {
     expect(result.current.count).toBe(1);
 });
 
+
+
 // Context Provider
 import React, { useContext } from "react";
 import { render, screen } from "@testing-library/react";
@@ -188,6 +199,8 @@ function UserFullName() {
     const { user } = useContext(UserContext);
     return <p>{user.fullName}</p>;
 }
+
+
 
 // HOCs
 import React from "react";
@@ -209,6 +222,8 @@ function withSum(WrappedComponent, numbersToSum) {
     const sum = numbersToSum.reduce((a, b) => a + b, 0);
     return () => <WrappedComponent sum={sum} />;
 }
+
+
 
 // Portals
 import React, { useRef, useEffect, useState } from "react";

@@ -1,3 +1,5 @@
+// Ref: https://ivov.dev/notes/revisiting-data-structures-in-javascript
+
 class Node {
     constructor(value) {
         this.value = value;
