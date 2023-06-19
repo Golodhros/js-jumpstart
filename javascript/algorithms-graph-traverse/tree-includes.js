@@ -1,4 +1,6 @@
-// Ref: https://ivov.dev/notes/revisiting-data-structures-in-javascript
+// Say if a value is in the tree
+// target: e
+// tree:
 
 class Node {
     constructor(value) {
@@ -105,6 +107,43 @@ class BinarySearchTree {
         return this;
     }
 
+    treeIncludesRecursive(root, value) {
+        if (root === null) {
+            return false;
+        }
+        if (root.value === value) {
+            return true;
+        }
+
+        // Recurse
+        return (
+            this.treeIncludesRecursive(root.left, value) ||
+            this.treeIncludesRecursive(root.right, value)
+        );
+    }
+
+    treeIncludesBFS(root, value) {
+        const queue = [root];
+
+        while (queue.length) {
+            // Note: not really O(1)
+            const current = queue.shift();
+
+            if (current.value === value) {
+                console.log("found!");
+                return true;
+            }
+            if (current.left) {
+                queue.push(current.left);
+            }
+            if (current.right) {
+                queue.push(current.right);
+            }
+        }
+
+        return false;
+    }
+
     contains(value) {
         if (!this.root) {
             return false;
@@ -131,36 +170,19 @@ class BinarySearchTree {
 }
 
 const BST = new BinarySearchTree();
-BST.insert(5);
-BST.insert(3);
-BST.insert(1);
-BST.insert(2);
-BST.insert(6);
-BST.insert(7);
+BST.insert("d");
+BST.insert("a");
+BST.insert("c");
+BST.insert("e");
+BST.insert("b");
+BST.insert("f");
 BST.print();
 
-/**
-     5
-    / \
-   2   6
-  / \   \
- 1   3   7
-*/
-
-BST.contains(2);
-BST.contains(7);
-
-// console.log("DFSTraversal");
-// BST.DFSTraversal(BST.root, (node) => {
-//     console.log("Value", node.value);
-// });
-
-// console.log("DFSRecursive");
 // BST.DFSRecursive(BST.root, (node) => {
-//     console.log("Value", node.value);
+//     if (node.value === "e") {
+//         console.log("found!");
+//     }
 // });
 
-console.log("BFSTraversal");
-BST.BFSTraversal(BST.root, (node) => {
-    console.log("Value", node.value);
-});
+// console.log(BST.treeIncludesBFS(BST.root, "z"));
+console.log(BST.treeIncludesRecursive(BST.root, "e"));

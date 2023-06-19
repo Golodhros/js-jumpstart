@@ -1,5 +1,3 @@
-// Ref: https://ivov.dev/notes/revisiting-data-structures-in-javascript
-
 class Node {
     constructor(value) {
         this.value = value;
@@ -105,6 +103,18 @@ class BinarySearchTree {
         return this;
     }
 
+    sumRecursive(root) {
+        if (root === null) {
+            return 0;
+        }
+
+        return (
+            root.value +
+            this.sumRecursive(root.left) +
+            this.sumRecursive(root.right)
+        );
+    }
+
     contains(value) {
         if (!this.root) {
             return false;
@@ -139,28 +149,12 @@ BST.insert(6);
 BST.insert(7);
 BST.print();
 
-/**
-     5
-    / \
-   2   6
-  / \   \
- 1   3   7
-*/
-
-BST.contains(2);
-BST.contains(7);
-
-// console.log("DFSTraversal");
-// BST.DFSTraversal(BST.root, (node) => {
-//     console.log("Value", node.value);
-// });
-
-// console.log("DFSRecursive");
-// BST.DFSRecursive(BST.root, (node) => {
-//     console.log("Value", node.value);
-// });
-
 console.log("BFSTraversal");
+let sum = 0;
 BST.BFSTraversal(BST.root, (node) => {
-    console.log("Value", node.value);
+    sum = sum + node.value;
 });
+console.log("sum", sum);
+
+console.log("sumRecursive");
+console.log("sum", BST.sumRecursive(BST.root));
