@@ -16,10 +16,10 @@ const setup = (propOverrides) => {
 };
 
 // Setup with userEvent
-const setup = (propOverrides?: Partial<LineChartProps>) => {
-    const defaultProps = aLineChartTestData().build();
+const setup = (propOverrides?: Partial<ComponentToTestProps>) => {
+    const defaultProps = aComponentToTestTestData().build();
     const props = { ...defaultProps, ...propOverrides };
-    const { container } = render(<LineChart {...props} />);
+    const { container } = render(<ComponentToTest {...props} />);
     const user = userEvent.setup();
 
     return { props, container, user };
@@ -28,10 +28,28 @@ const setup = (propOverrides?: Partial<LineChartProps>) => {
 
 // Async testing
 it("should update the text", async () => {
+    const { user } = setup();
     const button = screen.getByRole("button", { name: "Click Me" });
-    await userEvent.click(button);
+    await user.click(button);
 
     const text = await screen.findByText("Clicked once");
+});
+
+it("should update things with input blur", async () => {
+    const { user } = setup();
+    const input = screen.getByTestId(TEST_ID_INPUT);
+    const content = "test content";
+
+    await user.type(input, content);
+    await user.click(document.body);
+    // OR
+    await user.keyboard("test content{enter}");
+
+    await waitFor(() => {
+        const actual = screen.findByText("input changed");
+
+        expect(actual).toBeInTheDocument();
+    })
 });
 
 it("should call the API", async () => {
@@ -53,6 +71,7 @@ afterEach(() => {
 
 
 // Focus Testing
+// ------------------
 it("compares with the currently active element", () => {
     const expected = true;
     setup();
@@ -82,8 +101,8 @@ test("uses .toHaveFocus() to check", () => {
 
 
 
-
 // Selectbox testing
+// ------------------
 it("should correctly set the default option", () => {
     const expected = true;
     setup();
@@ -144,12 +163,28 @@ describe('lifetime', () => {
             const { user } = setup({ onChange: onChangeSpy });
             const input = screen.getByRole('textbox');
 
-            user.type(input, value);
+            await user.type(input, value);
+            await user.click(document.body);
+            // OR
+            await user.keyboard('testValue{enter}');
 
             await waitFor(() => {
                 const actual = (onChangeSpy as jest.Mock).mock.calls.length;
 
                 expect(actual).toBe(expected);
+            });
+        });
+
+        it('calls correct dispatch when changing the duration value', async () => {
+            const { user, mockedUpdate } = setup(true);
+
+            const input = screen.getByTestId(TestIds.adjust.duration);
+            await user.clear(input);
+            await user.type(input, '00:10:0');
+            await user.click(document.body);
+
+            await waitFor(() => {
+                expect(mockedUpdate).toHaveBeenCalledWith({ to: 600 });
             });
         });
     });
@@ -268,3 +303,27 @@ function PortalCounter() {
         el.current
     );
 }
+
+
+// Mocking custom hooks
+import { getTemplateData } from '#/modules/Templates/redux/api';
+
+const mockedGetTemplateData = getTemplateData as jest.Mock;
+jest.mock('#/modules/Templates/redux/api', () => ({
+  ...jest.requireActual('#/modules/Templates/redux/api'),
+  getTemplateData: jest.fn(),
+}));
+
+//...
+ beforeEach(() => {
+    // For a promise returning function
+    mockedGetTemplateData.mockReturnValue(Promise.resolve({}));
+    // For an object returning function
+    mockedGetTemplateData.mockReturnValue({
+      keywordTags: [],
+      category: '',
+      query: '',
+      aspectRatio: '',
+    });
+    jest.clearAllMocks();
+  });
