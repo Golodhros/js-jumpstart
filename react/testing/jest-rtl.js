@@ -1,29 +1,40 @@
 // npm install --save-dev @testing-library/user-event
 
-import userEvent from "@testing-library/user-event";
+import { userEvent } from "@testing-library/user-event";
 
-// Setup
-const setup = (propOverrides) => {
-    const props = {
-        defaultProp1: [],
-        defaultProp2: true,
-        ...propOverrides,
-    };
-    const rendered = render(<ComponentUnderTest {...props} />);
-    const user = userEvent.setup();
-
-    return { props, rendered, user };
-};
 
 // Setup with userEvent
 const setup = (propOverrides?: Partial<ComponentToTestProps>) => {
     const defaultProps = aComponentToTestTestData().build();
     const props = { ...defaultProps, ...propOverrides };
-    const { container } = render(<ComponentToTest {...props} />);
     const user = userEvent.setup();
 
-    return { props, container, user };
+    render(<ComponentToTest {...props} />);
+
+    return { props, user };
 };
+
+// Basic Tests
+describe('<ComponentName>', () => {
+  describe('render', () => {
+    it('should render without errors', () => {
+      expect(() => {
+        setup();
+      }).not.toThrow();
+    });
+
+    it('should render the root element', () => {
+      setup();
+
+      expect(
+        screen.getByTestId(TEST_IDS.FULLSCREEN_OVERLAY_CONTAINER),
+      ).toBeInTheDocument();
+    });
+
+    //...
+  });
+});
+
 
 
 // Async testing
