@@ -8,45 +8,27 @@ This are simple snippets for the most part. Just copy/paste them in your project
 ## Contents
 There is a mix of stuff in here:
 
-### Backbone
-Patterns, tricks and best practices related with the usual components of backbone applications
-*  Collections
-*  Entities
-*  Marionette
-*  Models
-*  Routers
-*  Structure
-*  Templates
-*  Views
-
-### D3
+### d3/
 Tricks and patterns of D3 development
 
-### ES2015
-Notes and snippets for working with ES2015 code
+### interview-questions/
+Historical of interview questions about JS, React and System Design
 
-### Javascript
-Set of tricks, modules and extensions for Vanilla JavaScript based projects
+### javascript/
+Algorithms, Data Structures, Design Patterns and other tricks, modules and extensions for Vanilla JavaScript based projects
 
-### Jquery
-Set of tricks, modules and best practices for jQuery based projects
-
-### Mobile-development
-Tricks and patterns for mobile targeted development
-
-### Performance-patterns
-Best practices for more performant JavaScript
-
-### React
+### react/
 Best practices and snippets for React development
 
-### Redux
-Notes and snippets
+### typescript/
+Best practices and snippets for TypeScript
 
-### Testing
-Patterns for testing, related to backbone code, Jasmine and test data generation
+### web-performance-patterns/
+Best practices for more performant JavaScript
 
+### workflow/
+Patterns for testing, debugging, formatting and publishing
 
 ## Acknowledgements
-Most of this code is taken from books, blog posts and essays about this technologies.
+Most of this code is taken from books, interviews, blog posts and essays about this technologies.
 I am sorry if some refereces are missing, I wasn't sure I would ever share this!
